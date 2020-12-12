@@ -1,7 +1,22 @@
 import React, { Component } from "react";
 
 export class Home extends Component {
-  static displayName = Home.name
+  static displayName = Home.name;
+
+  state = {
+    FirstName: "",
+    LastName: "",
+    Age: "",
+  };
+  handleTextOnChange = (e) => {
+    console.log(e.target.name, e.target.value);
+    const userName = e.target.name;
+    const enteringValue = (e.target.value);
+    this.setState({ [userName]: enteringValue },() => {
+      console.log(this.state.FirstName, this.state.LastName, this.state.Age);
+    });
+    
+  };
 
   render() {
     return (
@@ -10,15 +25,30 @@ export class Home extends Component {
         <form>
           <div className="form-group">
             <label htmlFor="FirstName">FirstName</label>
-            <input type="FirstName" className="form-control"></input>
+            <input
+              type="FirstName"
+              name="FirstName"
+              className="form-control"
+              onChange={this.handleTextOnChange}
+            ></input>
           </div>
           <div className="form-group">
             <label htmlFor="LastName">LastName</label>
-            <input type="LastName" className="form-control"></input>
+            <input
+              type="LastName"
+              name="LastName"
+              className="form-control"
+              onChange={this.handleTextOnChange}
+            ></input>
           </div>
           <div className="form-group">
             <label htmlFor="Age">Age</label>
-            <input type="Age" className="form-control"></input>
+            <input
+              type="Age"
+              name="Age"
+              className="form-control"
+              onChange={this.handleTextOnChange}
+            ></input>
           </div>
         </form>
         <button>Set</button>
