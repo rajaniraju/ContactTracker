@@ -22,21 +22,40 @@ export class Home extends Component {
       lastName: this.state.lastName,
       age: this.state.age,
     };
+    console.log(person);
     fetch(
       "https://localhost:44300/WeatherForecast/GetUserEntry/" +
-      this.state.firstName +
-      "/" +
-      this.state.lastName +
-      "/" +
-      this.state.age
+        this.state.firstName +
+        "/" +
+        this.state.lastName +
+        "/" +
+        this.state.age
     )
       .then((res) => res.json())
       .then((result) => {
         console.log(result);
       });
-  
-
   };
+  setUserEntry = () => {
+    const person = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      age: this.state.age,
+    };
+    console.log(person);
+    fetch("https://localhost:44300/WeatherForecast/SetPerson", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(person),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+      });
+  
+  }
 
   render() {
     return (
@@ -47,7 +66,7 @@ export class Home extends Component {
             <label htmlFor="FirstName">FirstName</label>
             <input
               type="FirstName"
-              name="FirstName"
+              name="firstName"
               className="form-control"
               onChange={this.handleTextOnChange}
             ></input>
@@ -56,7 +75,7 @@ export class Home extends Component {
             <label htmlFor="LastName">LastName</label>
             <input
               type="LastName"
-              name="LastName"
+              name="lastName"
               className="form-control"
               onChange={this.handleTextOnChange}
             ></input>
@@ -65,14 +84,14 @@ export class Home extends Component {
             <label htmlFor="Age">Age</label>
             <input
               type="Age"
-              name="Age"
+              name="age"
               className="form-control"
               onChange={this.handleTextOnChange}
             ></input>
           </div>
         </form>
-        <button>Set</button>
-        <button>Update</button>
+        <button onClick={this.setUserEntry}>Set</button>
+        <button >Update</button>
         <button onClick={this.getUserEntry}>Get</button>
       </div>
     );

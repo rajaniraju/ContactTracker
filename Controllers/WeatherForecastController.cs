@@ -38,16 +38,23 @@ namespace TestApp2.Controllers
         }
 
         [HttpGet]
-        [Route("GetUserEntry/{FirstName}/{LastName}/{Age}")]
+        [Route("GetUserEntry/{firstName}/{lastName}/{age}")]
 
         public object GetUserEntry(string firstName,string lastName,int age)
         {
            var person = new Person();
-            /*person.FirstName= "Rajani";
-            person.LastName = "Raju";
-            person.Age = 22;*/
-           return person ;
-        }  
+            person.FirstName= firstName;
+            person.LastName = lastName;
+            person.Age = age;
+           return person;
+        }
+        [HttpPost]
+        [Route("SetPerson")]
+        public object SetPerson([FromBody] object person)
+        //public return type method(sending type attribute)
+        {
+            return person;
+        }
 
     }
 }
