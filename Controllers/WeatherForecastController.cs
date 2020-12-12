@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TestApp2.Common;
 
 namespace TestApp2.Controllers
 {
@@ -35,5 +36,18 @@ namespace TestApp2.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet]
+        [Route("GetUserEntry/{FirstName}/{LastName}/{Age}")]
+
+        public object GetUserEntry(string firstName,string lastName,int age)
+        {
+           var person = new Person();
+            /*person.FirstName= "Rajani";
+            person.LastName = "Raju";
+            person.Age = 22;*/
+           return person ;
+        }  
+
     }
 }

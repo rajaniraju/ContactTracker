@@ -11,11 +11,31 @@ export class Home extends Component {
   handleTextOnChange = (e) => {
     console.log(e.target.name, e.target.value);
     const userName = e.target.name;
-    const enteringValue = (e.target.value);
-    this.setState({ [userName]: enteringValue },() => {
+    const enteringValue = e.target.value;
+    this.setState({ [userName]: enteringValue }, () => {
       console.log(this.state.FirstName, this.state.LastName, this.state.Age);
     });
-    
+  };
+  getUserEntry = () => {
+    const person = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      age: this.state.age,
+    };
+    fetch(
+      "https://localhost:44300/WeatherForecast/GetUserEntry/" +
+      this.state.firstName +
+      "/" +
+      this.state.lastName +
+      "/" +
+      this.state.age
+    )
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+      });
+  
+
   };
 
   render() {
@@ -53,7 +73,7 @@ export class Home extends Component {
         </form>
         <button>Set</button>
         <button>Update</button>
-        <button>Get</button>
+        <button onClick={this.getUserEntry}>Get</button>
       </div>
     );
   }
