@@ -58,7 +58,6 @@ namespace TestApp2.Controllers
         public object GetPerson()
         {
            var person = _memoryCache.Get("My Key");
-            Console.WriteLine(person);
             return person;
 
             //}
