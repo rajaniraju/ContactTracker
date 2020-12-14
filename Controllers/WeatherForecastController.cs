@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace TestApp2.Controllers
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
+        
     {
         private static readonly string[] Summaries = new[]
         {
@@ -18,10 +20,13 @@ namespace TestApp2.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        private readonly IMemoryCache _memoryCache ;
+       public WeatherForecastController(ILogger<WeatherForecastController> logger,IMemoryCache memoryCache)
+           
+          
         {
             _logger = logger;
+            _memoryCache = memoryCache;
         }
 
         [HttpGet]
@@ -37,24 +42,37 @@ namespace TestApp2.Controllers
             .ToArray();
         }
 
-        [HttpGet]
-        [Route("GetUserEntry/{firstName}/{lastName}/{age}")]
+        //[HttpGet]
+        //[Route("GetUserEntry/{firstName}/{lastName}/{age}")]
+        //public object GetUserEntry(string firstName,string lastName,int age)
+        //{           
+        //    var  person = new Person();
+        //    person.FirstName = firstName;
+        //    person.LastName = lastName;
+        //    person.Age = age;
+        //    return person;
+        //}
 
-        public object GetUserEntry(string firstName,string lastName,int age)
+        [HttpGet]
+        [Route("GetPerson")]
+        public object GetPerson()
         {
-           var person = new Person();
-            person.FirstName= firstName;
-            person.LastName = lastName;
-            person.Age = age;
-           return person;
+           var person = _memoryCache.Get("My Key");
+            Console.WriteLine(person);
+            return person;
+
+            //}
         }
+
         [HttpPost]
         [Route("SetPerson")]
         public object SetPerson([FromBody] object person)
         //public return type method(sending type attribute)
         {
-            return person;
+            _memoryCache.Set("My Key", person);
+            return person.ToString();
         }
 
     }
+
 }

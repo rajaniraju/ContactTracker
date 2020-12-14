@@ -23,19 +23,13 @@ export class Home extends Component {
       age: this.state.age,
     };
     console.log(person);
-    fetch(
-      "https://localhost:44300/WeatherForecast/GetUserEntry/" +
-        this.state.firstName +
-        "/" +
-        this.state.lastName +
-        "/" +
-        this.state.age
-    )
+    fetch("https://localhost:44300/WeatherForecast/GetPerson/")
       .then((res) => res.json())
       .then((result) => {
         console.log(result);
       });
   };
+  
   setUserEntry = () => {
     const person = {
       firstName: this.state.firstName,
@@ -54,8 +48,7 @@ export class Home extends Component {
       .then((result) => {
         console.log(result);
       });
-  
-  }
+  };
 
   render() {
     return (
@@ -91,7 +84,6 @@ export class Home extends Component {
           </div>
         </form>
         <button onClick={this.setUserEntry}>Set</button>
-        <button >Update</button>
         <button onClick={this.getUserEntry}>Get</button>
       </div>
     );
