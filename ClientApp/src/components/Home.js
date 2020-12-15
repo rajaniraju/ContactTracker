@@ -4,32 +4,41 @@ export class Home extends Component {
   static displayName = Home.name;
 
   state = {
-    FirstName: "",
-    LastName: "",
-    Age: "",
+    firstName: "",
+    lastName: "",
+    age: "",
   };
+
   handleTextOnChange = (e) => {
     console.log(e.target.name, e.target.value);
     const userName = e.target.name;
     const enteringValue = e.target.value;
     this.setState({ [userName]: enteringValue }, () => {
-      console.log(this.state.FirstName, this.state.LastName, this.state.Age);
+      console.log(this.state.firstName, this.state.lastName, this.state.age);
     });
   };
+
   getUserEntry = () => {
-    const person = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      age: this.state.age,
-    };
-    console.log(person);
     fetch("https://localhost:44300/WeatherForecast/GetPerson/")
       .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
+      .then((person) => {
+        console.log(person);
+        this.setState({
+          firstName: person.firstName,
+          lastName: person.lastName,
+          age: person.age,
+        });
       });
   };
-  
+
+  // onGetUserEntrySuccess = (person) => {
+  //   this.setState({
+  //     firstName: person.firstName,
+  //     lastName: person.lastName,
+  //     age: person.age,
+  //   });
+  // };
+
   setUserEntry = () => {
     const person = {
       firstName: this.state.firstName,
@@ -60,6 +69,7 @@ export class Home extends Component {
             <input
               type="FirstName"
               name="firstName"
+              value={this.state.firstName}
               className="form-control"
               onChange={this.handleTextOnChange}
             ></input>
@@ -69,6 +79,7 @@ export class Home extends Component {
             <input
               type="LastName"
               name="lastName"
+              value={this.state.lastName}
               className="form-control"
               onChange={this.handleTextOnChange}
             ></input>
@@ -78,6 +89,7 @@ export class Home extends Component {
             <input
               type="Age"
               name="age"
+              value={this.state.age}
               className="form-control"
               onChange={this.handleTextOnChange}
             ></input>
