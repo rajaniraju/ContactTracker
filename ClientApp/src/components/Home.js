@@ -20,14 +20,19 @@ export class Home extends Component {
 
   getUserEntry = () => {
     fetch("https://localhost:44300/WeatherForecast/GetPerson/")
-      .then((res) => res.json())
+      .then((res) => res.text())
+      .then((text) => {
+        return text.length ? JSON.parse(text) : null;
+      })
       .then((person) => {
         console.log(person);
-        this.setState({
-          firstName: person.firstName,
-          lastName: person.lastName,
-          age: person.age,
-        });
+        if (person) {
+          this.setState({
+            firstName: person.firstName,
+            lastName: person.lastName,
+            age: person.age,
+          });
+        }
       });
   };
 
@@ -43,15 +48,14 @@ export class Home extends Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(person),
-    })
+    });
     console.log(person);
     this.setState({
-      firstName:"",
+      firstName: "",
       lastName: "",
       age: "",
     });
-
-  }
+  };
 
   setUserEntry = () => {
     const person = {
@@ -60,17 +64,25 @@ export class Home extends Component {
       age: this.state.age,
     };
     console.log(person);
-    fetch("https://localhost:44300/WeatherForecast/SetPerson", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(person),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-      });
+    if (
+      this.state.firstName === "" ||
+      this.state.lastName === "" ||
+      this.state.age === ""
+    ) {
+      return;
+    } else {
+      fetch("https://localhost:44300/WeatherForecast/SetPerson", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(person),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result);
+        });
+    }
   };
 
   render() {
