@@ -31,13 +31,22 @@ export class Home extends Component {
       });
   };
 
-  // onGetUserEntrySuccess = (person) => {
-  //   this.setState({
-  //     firstName: person.firstName,
-  //     lastName: person.lastName,
-  //     age: person.age,
-  //   });
-  // };
+  deleteUserEntry = () => {
+    const person = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      age: this.state.age,
+    };
+    fetch("https://localhost:44300/WeatherForecast/deleteEntry", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(person),
+    })
+    console.log(person);
+    
+  }
 
   setUserEntry = () => {
     const person = {
@@ -97,6 +106,7 @@ export class Home extends Component {
         </form>
         <button onClick={this.setUserEntry}>Set</button>
         <button onClick={this.getUserEntry}>Get</button>
+        <button onClick={this.deleteUserEntry}>Delete</button>
       </div>
     );
   }

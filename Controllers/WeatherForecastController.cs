@@ -12,7 +12,7 @@ namespace TestApp2.Controllers
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
-        
+
     {
         private static readonly string[] Summaries = new[]
         {
@@ -20,10 +20,11 @@ namespace TestApp2.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly IMemoryCache _memoryCache ;
-       public WeatherForecastController(ILogger<WeatherForecastController> logger,IMemoryCache memoryCache)
-           
-          
+        private readonly IMemoryCache _memoryCache;
+
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IMemoryCache memoryCache)
+
+
         {
             _logger = logger;
             _memoryCache = memoryCache;
@@ -57,7 +58,7 @@ namespace TestApp2.Controllers
         [Route("GetPerson")]
         public object GetPerson()
         {
-           var person = _memoryCache.Get("My Key");
+            var person = _memoryCache.Get("My Key");
             return person;
 
             //}
@@ -71,6 +72,13 @@ namespace TestApp2.Controllers
             _memoryCache.Set("My Key", person);
             return person.ToString();
         }
+
+        [HttpPost]
+        [Route("DeleteEntry")]
+        public void DeleteEntry([FromBody] object person)
+        {
+            _memoryCache.Remove("My Key");
+        }      
 
     }
 
