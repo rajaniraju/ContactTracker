@@ -45,7 +45,12 @@ export class Home extends Component {
       body: JSON.stringify(person),
     })
     console.log(person);
-    
+    this.setState({
+      firstName:"",
+      lastName: "",
+      age: "",
+    });
+
   }
 
   setUserEntry = () => {
