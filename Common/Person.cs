@@ -9,7 +9,7 @@ namespace TestApp2.Common
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Age { get; set; }
+        public string Age { get; set; }
         public string FullName 
         { 
             get 

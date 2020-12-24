@@ -124,6 +124,7 @@ export class Home extends Component {
         <button onClick={this.setUserEntry}>Set</button>
         <button onClick={this.getUserEntry}>Get</button>
         <button onClick={this.deleteUserEntry}>Delete</button>
+        <div><button>Save</button></div>
       </div>
     );
   }

@@ -66,11 +66,17 @@ namespace TestApp2.Controllers
 
         [HttpPost]
         [Route("SetPerson")]
-        public object SetPerson([FromBody] object person)
+        public object SetPerson([FromBody] Person person)
         //public return type method(sending type attribute)
         {
-            _memoryCache.Set("My Key", person);
-            return person.ToString();
+
+            //_memoryCache.Set("My Key", person);
+            List<Person> details = new List<Person>();
+
+            details.Add(person);
+            List<Person> stat = _memoryCache.Get<List<Person>>("My Key");
+
+            return person;
         }
 
         [HttpPost]
@@ -78,7 +84,7 @@ namespace TestApp2.Controllers
         public void DeleteEntry([FromBody] object person)
         {
             _memoryCache.Remove("My Key");
-        }      
+        }
 
     }
 
