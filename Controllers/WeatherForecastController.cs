@@ -21,6 +21,7 @@ namespace TestApp2.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IMemoryCache _memoryCache;
+        private const string CACHE_KEY = "My_Key";
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger, IMemoryCache memoryCache)
 
@@ -58,7 +59,7 @@ namespace TestApp2.Controllers
         [Route("GetPerson")]
         public object GetPerson()
         {
-            var person = _memoryCache.Get("My Key");
+            var person = _memoryCache.Get(CACHE_KEY);
             return person;
 
             //}
@@ -67,14 +68,21 @@ namespace TestApp2.Controllers
         [HttpPost]
         [Route("SetPerson")]
         public object SetPerson([FromBody] Person person)
-        //public return type method(sending type attribute)
         {
+            if (person == null)
+            {
+                return null;
+            }
 
-            //_memoryCache.Set("My Key", person);
-            List<Person> details = new List<Person>();
+            List<Person> list = _memoryCache.Get<List<Person>>(CACHE_KEY);
 
-            details.Add(person);
-            List<Person> stat = _memoryCache.Get<List<Person>>("My Key");
+            if (list == null) {
+                list = new List<Person>();
+            }
+
+            list.Add(person);
+
+            _memoryCache.Set(CACHE_KEY, list);
 
             return person;
         }
@@ -83,7 +91,7 @@ namespace TestApp2.Controllers
         [Route("DeleteEntry")]
         public void DeleteEntry([FromBody] object person)
         {
-            _memoryCache.Remove("My Key");
+            _memoryCache.Remove(CACHE_KEY);
         }
 
     }
