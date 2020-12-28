@@ -84,14 +84,19 @@ namespace TestApp2.Controllers
 
             _memoryCache.Set(CACHE_KEY, list);
 
-            return person;
+            return list;
         }
 
         [HttpPost]
         [Route("DeleteEntry")]
-        public void DeleteEntry([FromBody] object person)
+        public object DeleteEntry([FromBody] Person person)
         {
-            _memoryCache.Remove(CACHE_KEY);
+            List<Person> list = _memoryCache.Get<List<Person>>(CACHE_KEY);
+            var currentItem = (list.Count - 1);
+            var listTobeDeleted = list[currentItem];
+            list.Remove(listTobeDeleted);
+            _memoryCache.Set(CACHE_KEY, list);
+            return list;
         }
 
     }

@@ -49,6 +49,7 @@ export class Home extends Component {
       },
       body: JSON.stringify(person),
     });
+    
     console.log(person);
     this.setState({
       firstName: "",
@@ -81,7 +82,7 @@ export class Home extends Component {
         .then((res) => res.json())
         .then((result) => {
           console.log(result);
-        });
+          });
     }
   };
 
@@ -124,7 +125,6 @@ export class Home extends Component {
         <button onClick={this.setUserEntry}>Set</button>
         <button onClick={this.getUserEntry}>Get</button>
         <button onClick={this.deleteUserEntry}>Delete</button>
-        <div><button>Save</button></div>
       </div>
     );
   }
