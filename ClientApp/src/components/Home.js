@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 export class Home extends Component {
   static displayName = Home.name;
+  displayList = [];
 
   state = {
     firstName: "",
@@ -48,9 +49,14 @@ export class Home extends Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(person),
-    });
-    
-    console.log(person);
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        this.displayList = result;
+      });
+
+    console.log(this.displayList);
     this.setState({
       firstName: "",
       lastName: "",
@@ -82,7 +88,7 @@ export class Home extends Component {
         .then((res) => res.json())
         .then((result) => {
           console.log(result);
-          });
+        });
     }
   };
 
