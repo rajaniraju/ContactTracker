@@ -79,7 +79,7 @@ namespace TestApp2.Controllers
             if (list == null) {
                 list = new List<Person>();
             }
-
+            person.Id = Guid.NewGuid().ToString();
             list.Add(person);
 
             _memoryCache.Set(CACHE_KEY, list);

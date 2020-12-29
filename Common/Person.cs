@@ -10,12 +10,14 @@ namespace TestApp2.Common
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Age { get; set; }
-        public string FullName 
-        { 
-            get 
+        public string Id { get; set; }
+        public string FullName
+        {
+            get
             {
                 return this.FirstName + " " + this.LastName;
-            } 
+            }
         }
+
     }
 }
