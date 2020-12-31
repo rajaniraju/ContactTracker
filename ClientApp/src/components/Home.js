@@ -25,13 +25,13 @@ export class Home extends Component {
       .then((text) => {
         return text.length ? JSON.parse(text) : null;
       })
-      .then((person) => {
-        console.log(person);
-        if (person) {
+      .then((peopleArray) => {
+        console.log("#100",peopleArray);
+        if (peopleArray) {
           this.setState({
-            firstName: person.firstName,
-            lastName: person.lastName,
-            age: person.age,
+            firstName: peopleArray.firstName,
+            lastName: peopleArray.lastName,
+            age: peopleArray.age,
           });
         }
       });
@@ -132,6 +132,7 @@ export class Home extends Component {
         <button onClick={this.setUserEntry}>Set</button>
         <button onClick={this.getUserEntry}>Get</button>
         <button onClick={this.deleteUserEntry}>Delete</button>
+        
       </div>
     );
   }
