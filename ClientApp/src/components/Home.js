@@ -29,11 +29,7 @@ export class Home extends Component {
       .then((peopleArray) => {
         console.log("#100", peopleArray);
         if (peopleArray) {
-          this.setState({
-            firstName: peopleArray.firstName,
-            lastName: peopleArray.lastName,
-            age: peopleArray.age,
-          });
+          this.setState({ peopleArray: peopleArray });          
         }
       });
   };
@@ -98,9 +94,10 @@ export class Home extends Component {
     let rows = this.state.peopleArray.map((people, index) => {
       return (
         <tr key={index}>
-          <td>{people.firstName}</td>
-          <td>{people.lastName}</td>
-          <td>{people.age}</td>
+          <td >{people.firstName}</td>
+          <td >{people.lastName}</td>
+          <td >{people.age}</td>
+          <td hidden={true}>{people.id}</td>
         </tr>
       );
     });
