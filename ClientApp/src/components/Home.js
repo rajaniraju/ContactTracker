@@ -98,6 +98,10 @@ export class Home extends Component {
           <td >{people.lastName}</td>
           <td >{people.age}</td>
           <td hidden={true}>{people.id}</td>
+          <td>{<input
+            type="checkbox"
+            className="checkbox"
+          ></input>}</td>
         </tr>
       );
     });
