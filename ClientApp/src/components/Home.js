@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "./Home.css";
 export class Home extends Component {
   static displayName = Home.name;
   displayList = [];
@@ -8,6 +8,7 @@ export class Home extends Component {
     firstName: "",
     lastName: "",
     age: "",
+    peopleArray: [],
   };
 
   handleTextOnChange = (e) => {
@@ -26,7 +27,7 @@ export class Home extends Component {
         return text.length ? JSON.parse(text) : null;
       })
       .then((peopleArray) => {
-        console.log("#100",peopleArray);
+        console.log("#100", peopleArray);
         if (peopleArray) {
           this.setState({
             firstName: peopleArray.firstName,
@@ -88,12 +89,21 @@ export class Home extends Component {
         .then((res) => res.json())
         .then((result) => {
           console.log(result);
-        })
+          this.setState({ peopleArray: result });
+        });
     }
-    
   };
 
   render() {
+    let rows = this.state.peopleArray.map((people, index) => {
+      return (
+        <tr key={index}>
+          <td>{people.firstName}</td>
+          <td>{people.lastName}</td>
+          <td>{people.age}</td>
+        </tr>
+      );
+    });
     return (
       <div>
         <h1>Personal Details</h1>
@@ -132,7 +142,24 @@ export class Home extends Component {
         <button onClick={this.setUserEntry}>Set</button>
         <button onClick={this.getUserEntry}>Get</button>
         <button onClick={this.deleteUserEntry}>Delete</button>
-        
+        <div>
+          <div className="container">
+            <div className="row">
+              <div className="col s12 board">
+                <table style={{ width: "100%" }}>
+                  <tbody>
+                    <tr>
+                      <th>Firstname</th>
+                      <th>Lastname</th>
+                      <th>Age</th>
+                    </tr>
+                    {rows}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
