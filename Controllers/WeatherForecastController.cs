@@ -100,12 +100,11 @@ namespace TestApp2.Controllers
 
         [HttpPost]
         [Route("DeleteEntry")]
-        public object DeleteEntry([FromBody] Person person)
+        public object DeleteEntry([FromBody] string[]arr)
         {
             List<Person> list = _memoryCache.Get<List<Person>>(CACHE_KEY);
-            var currentItem = (list.Count - 1);
-            var listTobeDeleted = list[currentItem];
-            list.Remove(listTobeDeleted);
+            var count = list.RemoveAll(p => arr.ToList().Contains(p.Id));
+
             _memoryCache.Set(CACHE_KEY, list);
             return list;
         }
