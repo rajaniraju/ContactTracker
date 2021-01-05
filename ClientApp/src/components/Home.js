@@ -45,7 +45,7 @@ export class Home extends Component {
   deleteUserEntry = () => {
     let table = this.tableRef.current;
     const idIndex = 3;
-    const checkBoxIndex = 4;
+    const checkBoxIndex = 0;
     let selectedIds = [];
 
     for (var i = 0; i < table.rows.length; i++) {
@@ -108,12 +108,18 @@ export class Home extends Component {
     let rows = this.state.peopleArray.map((people, index) => {
       return (
         <tr key={index}>
+          <td>
+            <input type="checkbox" className="checkbox"></input>
+          </td>
           <td>{people.firstName}</td>
           <td>{people.lastName}</td>
           <td>{people.age}</td>
           <td hidden={true}>{people.id}</td>
           <td>
-            <input type="checkbox" className="checkbox"></input>
+            <button>Edit</button>
+          </td>
+          <td>
+            <button>Delete</button>
           </td>
         </tr>
       );
@@ -163,6 +169,7 @@ export class Home extends Component {
                 <table ref={this.tableRef} style={{ width: "100%" }}>
                   <tbody>
                     <tr>
+                      <th></th>
                       <th>Firstname</th>
                       <th>Lastname</th>
                       <th>Age</th>
