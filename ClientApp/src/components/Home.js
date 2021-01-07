@@ -44,7 +44,7 @@ export class Home extends Component {
 
   deleteUserEntry = () => {
     let table = this.tableRef.current;
-    const idIndex = 3;
+    const idIndex = 4;
     const checkBoxIndex = 0;
     let selectedIds = [];
 
