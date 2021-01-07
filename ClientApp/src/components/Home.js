@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import "./row.js";
 import "./Home.css";
+import { Row } from "./row.js";
 export class Home extends Component {
   static displayName = Home.name;
 
@@ -105,23 +107,10 @@ export class Home extends Component {
   };
 
   render() {
-    let rows = this.state.peopleArray.map((people, index) => {
+      let rows = this.state.peopleArray.map((people, index) => {
+          console.log(index);
       return (
-        <tr key={index}>
-          <td>
-            <input type="checkbox" className="checkbox"></input>
-          </td>
-          <td>{people.firstName}</td>
-          <td>{people.lastName}</td>
-          <td>{people.age}</td>
-          <td hidden={true}>{people.id}</td>
-          <td>
-            <button>Edit</button>
-          </td>
-          <td>
-            <button>Delete</button>
-          </td>
-        </tr>
+        <Row key={index} people={people}> </Row>
       );
     });
     return (
