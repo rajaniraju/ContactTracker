@@ -11,6 +11,7 @@ export class Home extends Component {
     super(props);
 
     this.tableRef = React.createRef();
+    this.rowRef = React.createRef();
   }
 
   state = {
@@ -43,23 +44,42 @@ export class Home extends Component {
         }
       });
   };
+  onRowDeleted = (params) => {
+    //let row = this.rowRef.current;
+    console.log("from row:", params);
+    return;
+    /*const idIndex = 4;
+    const checkBoxIndex = 0;
+    let cells = row.column;
+    let tdChecked = cells[checkBoxIndex];
+      console.log(tdChecked.childNodes[0]);
+      return tdChecked.childNodes[0];
+
+    /*fetch(`https://localhost:${this.portNumber}/WeatherForecast/DeleteEntry`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(selectedId),
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            console.log(result);
+            this.setState({ peopleArray: result });
+          });*/
+  };
 
   deleteUserEntry = () => {
     let table = this.tableRef.current;
     const idIndex = 4;
     const checkBoxIndex = 0;
     let selectedIds = [];
-
-    for (var i = 0; i < table.rows.length; i++) {
-      if (i == 0) continue; // Skip header
-
-      let cells = table.rows[i].cells; // get all cells from the current row.
-      let tdChecked = cells[checkBoxIndex];
-      let checkBox = tdChecked.childNodes[0]; // There is only one inout inside this, so it is ok to hardcode 0;
-      if (checkBox.checked) {
-        let tdId = cells[idIndex];
-        selectedIds.push(tdId.innerText);
-      }
+    let cells = table.rows.column; // get all cells from the current row.
+    let tdChecked = cells[checkBoxIndex];
+    let checkBox = tdChecked.childNodes[0]; // There is only one inout inside this, so it is ok to hardcode 0;
+    if (checkBox.checked) {
+      let tdId = cells[idIndex];
+      selectedIds.push(tdId.innerText);
     }
     console.log(selectedIds);
 
@@ -107,10 +127,17 @@ export class Home extends Component {
   };
 
   render() {
-      let rows = this.state.peopleArray.map((people, index) => {
-          console.log(index);
+    let rows = this.state.peopleArray.map((people, index) => {
+      console.log(index);
       return (
-        <Row key={index} people={people}> </Row>
+        <Row
+          key={index}
+          people={people}
+          deleteCurrentRow={this.onRowDeleted}
+          ref={this.rowRef}
+        >
+          {" "}
+        </Row>
       );
     });
     return (
@@ -148,9 +175,7 @@ export class Home extends Component {
             ></input>
           </div>
         </form>
-        <button onClick={this.setUserEntry}>Set</button>
-        <button onClick={this.getUserEntry}>Get</button>
-        <button onClick={this.deleteUserEntry}>Delete</button>
+
         <div>
           <div className="container">
             <div className="row">
@@ -166,6 +191,12 @@ export class Home extends Component {
                     {rows}
                   </tbody>
                 </table>
+              </div>
+              <br></br>
+              <div>
+                <button onClick={this.setUserEntry}>Set</button>
+                <button onClick={this.getUserEntry}>Get</button>
+                <button onClick={this.deleteUserEntry}>Delete</button>
               </div>
             </div>
           </div>

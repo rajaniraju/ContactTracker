@@ -1,9 +1,19 @@
 import React, { Component } from "react";
 import "./Home.css";
 export class Row extends Component {
-  
+  constructor(props) {
+    super(props);
+  }
+
+  onRowDeleteClicked = () => {
+    if (this.props.deleteCurrentRow) {
+      const params = {
+        id: "todo",
+      };
+      this.props.deleteCurrentRow(params);
+    }
+  };
   render() {
-    console.log(this.props.people);
     return (
       <tr>
         <td>
@@ -17,7 +27,7 @@ export class Row extends Component {
           <button>Edit</button>
         </td>
         <td>
-          <button>Delete</button>
+          <button onClick={this.onRowDeleteClicked}>Delete</button>
         </td>
       </tr>
     );
