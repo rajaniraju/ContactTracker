@@ -11,7 +11,6 @@ export class Home extends Component {
     super(props);
 
     this.tableRef = React.createRef();
-    this.rowRef = React.createRef();
   }
 
   state = {
@@ -45,28 +44,20 @@ export class Home extends Component {
       });
   };
   onRowDeleted = (params) => {
-    //let row = this.rowRef.current;
     console.log("from row:", params);
-    return;
-    /*const idIndex = 4;
-    const checkBoxIndex = 0;
-    let cells = row.column;
-    let tdChecked = cells[checkBoxIndex];
-      console.log(tdChecked.childNodes[0]);
-      return tdChecked.childNodes[0];
-
-    /*fetch(`https://localhost:${this.portNumber}/WeatherForecast/DeleteEntry`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(selectedId),
-        })
-          .then((res) => res.json())
-          .then((result) => {
-            console.log(result);
-            this.setState({ peopleArray: result });
-          });*/
+    let idsToDelete = [params.id];
+    fetch(`https://localhost:${this.portNumber}/WeatherForecast/DeleteEntry`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(idsToDelete),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        this.setState({ peopleArray: result });
+      });
   };
 
   deleteUserEntry = () => {
@@ -130,12 +121,7 @@ export class Home extends Component {
     let rows = this.state.peopleArray.map((people, index) => {
       console.log(index);
       return (
-        <Row
-          key={index}
-          people={people}
-          deleteCurrentRow={this.onRowDeleted}
-          ref={this.rowRef}
-        >
+        <Row key={index} people={people} deleteCurrentRow={this.onRowDeleted}>
           {" "}
         </Row>
       );

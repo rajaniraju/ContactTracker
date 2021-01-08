@@ -3,19 +3,25 @@ import "./Home.css";
 export class Row extends Component {
   constructor(props) {
     super(props);
+    this.rowRef = React.createRef();
   }
 
   onRowDeleteClicked = () => {
     if (this.props.deleteCurrentRow) {
+      let row = this.rowRef.current; //reference to row
+      let cellWithID = row.childNodes[4]; //will get the cell which has the id.
+      let idOfCell = cellWithID.innerText; //To get ID only.
+      console.log(row, cellWithID, idOfCell);
+
       const params = {
-        id: "todo",
+        id: idOfCell,
       };
       this.props.deleteCurrentRow(params);
     }
   };
   render() {
     return (
-      <tr>
+      <tr ref={this.rowRef}>
         <td>
           <input type="checkbox" className="checkbox"></input>
         </td>
