@@ -61,16 +61,20 @@ export class Home extends Component {
   };
 
   deleteUserEntry = () => {
-    let table = this.tableRef.current;
+  let table = this.tableRef.current;
     const idIndex = 4;
     const checkBoxIndex = 0;
     let selectedIds = [];
-    let cells = table.rows.column; // get all cells from the current row.
-    let tdChecked = cells[checkBoxIndex];
-    let checkBox = tdChecked.childNodes[0]; // There is only one inout inside this, so it is ok to hardcode 0;
-    if (checkBox.checked) {
-      let tdId = cells[idIndex];
-      selectedIds.push(tdId.innerText);
+    for (var i = 0; i < table.rows.length; i++) {
+      if (i == 0) continue; // Skip header
+
+      let cells = table.rows[i].cells; // get all cells from the current row.
+      let tdChecked = cells[checkBoxIndex];
+      let checkBox = tdChecked.childNodes[0]; // There is only one inout inside this, so it is ok to hardcode 0;
+      if (checkBox.checked) {
+        let tdId = cells[idIndex];
+        selectedIds.push(tdId.innerText);
+      }
     }
     console.log(selectedIds);
 
@@ -114,6 +118,7 @@ export class Home extends Component {
           console.log(result);
           this.setState({ peopleArray: result });
         });
+      this.setState({ firstName: "", lastName: "", age: "" });
     }
   };
 
@@ -182,7 +187,7 @@ export class Home extends Component {
               <div>
                 <button onClick={this.setUserEntry}>Set</button>
                 <button onClick={this.getUserEntry}>Get</button>
-                <button onClick={this.deleteUserEntry}>Delete</button>
+                <button onClick={this.deleteUserEntry}>Delete Selected</button>
               </div>
             </div>
           </div>
