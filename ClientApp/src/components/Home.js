@@ -29,6 +29,15 @@ export class Home extends Component {
       console.log(this.state.firstName, this.state.lastName, this.state.age);
     });
   };
+  onEditUserEntry = (params) => {
+    let idToEdit = params.id;
+    for (let i = 0; i < this.state.peopleArray.length; i++) {
+      const person = this.state.peopleArray[i];
+      if (person.id == idToEdit) {
+        console.log(person);
+      }
+    }
+  };
 
   getUserEntry = () => {
     fetch(`https://localhost:${this.portNumber}/WeatherForecast/GetPerson/`)
@@ -61,7 +70,7 @@ export class Home extends Component {
   };
 
   deleteUserEntry = () => {
-  let table = this.tableRef.current;
+    let table = this.tableRef.current;
     const idIndex = 4;
     const checkBoxIndex = 0;
     let selectedIds = [];
@@ -124,9 +133,14 @@ export class Home extends Component {
 
   render() {
     let rows = this.state.peopleArray.map((people, index) => {
-      console.log(index);
+      //console.log(index);
       return (
-        <Row key={index} people={people} deleteCurrentRow={this.onRowDeleted}>
+        <Row
+          key={index}
+          people={people}
+          deleteCurrentRow={this.onRowDeleted}
+          editCurrentRow={this.onEditUserEntry}
+        >
           {" "}
         </Row>
       );
@@ -185,7 +199,8 @@ export class Home extends Component {
               </div>
               <br></br>
               <div>
-                <button onClick={this.setUserEntry}>Set</button>
+                <button>Save</button>
+                <button onClick={this.setUserEntry}>Add</button>
                 <button onClick={this.getUserEntry}>Get</button>
                 <button onClick={this.deleteUserEntry}>Delete Selected</button>
               </div>

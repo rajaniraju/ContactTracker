@@ -5,6 +5,20 @@ export class Row extends Component {
     super(props);
     this.rowRef = React.createRef();
   }
+  
+  onRowEditClicked = () => {
+    if (this.props.editCurrentRow) {
+      let row = this.rowRef.current; //reference to row
+      let cellWithID = row.childNodes[4]; //will get the cell which has the id.
+      let idOfCell = cellWithID.innerText; //To get ID only.
+     // console.log(row, cellWithID, idOfCell);
+
+      const params = {
+        id: idOfCell,
+      };
+      this.props.editCurrentRow(params);
+    }
+  };
 
   onRowDeleteClicked = () => {
     if (this.props.deleteCurrentRow) {
@@ -30,7 +44,7 @@ export class Row extends Component {
         <td>{this.props.people.age}</td>
         <td hidden={true}>{this.props.people.id}</td>
         <td>
-          <button>Edit</button>
+          <button onClick={this.onRowEditClicked}>Edit</button>
         </td>
         <td>
           <button onClick={this.onRowDeleteClicked}>Delete</button>
