@@ -80,9 +80,7 @@ namespace TestApp2.Controllers
                 list = new List<Person>();
             }
 
-            bool exists = list.Exists(p => p.FullName == person.FullName);
             var personFound = list.FirstOrDefault(p => p.FullName == person.FullName);
-
             if (personFound == null)
             {
                 person.Id = Guid.NewGuid().ToString();
@@ -97,7 +95,35 @@ namespace TestApp2.Controllers
 
             return list;
         }
+        [HttpPost]
+        [Route("SavePerson")]
+        public object SavePerson([FromBody] Person person)
+        {
+            if (person == null)
+            {
+                return null;
+            }
 
+            List<Person> list = _memoryCache.Get<List<Person>>(CACHE_KEY);
+
+            if (list == null)
+            {
+                return null;
+            }
+            
+            var personFound = list.FirstOrDefault(p => p.Id == person.Id);
+            if (personFound == null) {
+                return null;
+            }
+
+            personFound.FirstName = person.FirstName;
+            personFound.LastName = person.LastName;
+            personFound.Age = person.Age;
+
+            _memoryCache.Set(CACHE_KEY, list);
+
+            return list;
+        }
         [HttpPost]
         [Route("DeleteEntry")]
         public object DeleteEntry([FromBody] string[]arr)

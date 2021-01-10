@@ -17,6 +17,7 @@ export class Home extends Component {
     firstName: "",
     lastName: "",
     age: "",
+    id: "",
     peopleArray: [],
     displayList: [],
   };
@@ -29,6 +30,28 @@ export class Home extends Component {
       console.log(this.state.firstName, this.state.lastName, this.state.age);
     });
   };
+  onSaveUserEntry = () => {
+    const person = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      age: this.state.age,
+      id: this.state.id,
+    };
+    fetch(`https://localhost:${this.portNumber}/WeatherForecast/SavePerson`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(person),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        this.setState({ peopleArray: result });
+      });
+    this.setState({ firstName: "", lastName: "", age: "" });
+  };
+
   onEditUserEntry = (params) => {
     let idToEdit = params.id;
     for (let i = 0; i < this.state.peopleArray.length; i++) {
@@ -39,6 +62,7 @@ export class Home extends Component {
           firstName: person.firstName,
           lastName: person.lastName,
           age: person.age,
+          id: idToEdit,
         });
       }
     }
@@ -204,7 +228,7 @@ export class Home extends Component {
               </div>
               <br></br>
               <div>
-                <button>Save</button>
+                <button onClick={this.onSaveUserEntry}>Save</button>
                 <button onClick={this.setUserEntry}>Add</button>
                 <button onClick={this.getUserEntry}>Get</button>
                 <button onClick={this.deleteUserEntry}>Delete Selected</button>
