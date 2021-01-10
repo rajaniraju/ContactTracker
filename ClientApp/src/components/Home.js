@@ -37,19 +37,24 @@ export class Home extends Component {
       age: this.state.age,
       id: this.state.id,
     };
-    fetch(`https://localhost:${this.portNumber}/WeatherForecast/SavePerson`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(person),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-        this.setState({ peopleArray: result });
-      });
-    this.setState({ firstName: "", lastName: "", age: "" });
+    //to do check entry point;
+    if (person == null) {
+      return;
+    } else {
+      fetch(`https://localhost:${this.portNumber}/WeatherForecast/SavePerson`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(person),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result);
+          this.setState({ peopleArray: result });
+        });
+      this.setState({ firstName: "", lastName: "", age: "" });
+    }
   };
 
   onEditUserEntry = (params) => {
