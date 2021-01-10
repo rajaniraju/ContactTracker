@@ -9,13 +9,24 @@ namespace TestApp2.Common
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Age { get; set; }
+        public string Address { get; set; }
+        public string State { get; set; }
+        public string Zip { get; set; }
+        public int Phone  {get;set;}
         public string Id { get; set; }
         public string FullName
         {
             get
             {
                 return this.FirstName + " " + this.LastName;
+            }
+        }
+
+        public string FullAddress
+        {
+            get
+            {
+                return this.Address + " " + this.State + " " + this.Zip;
             }
         }
 

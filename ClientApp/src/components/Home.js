@@ -16,7 +16,10 @@ export class Home extends Component {
   state = {
     firstName: "",
     lastName: "",
-    age: "",
+    address: "",
+    state: "",
+    zip: "",
+    phone: "",
     id: "",
     peopleArray: [],
     displayList: [],
@@ -144,8 +147,7 @@ export class Home extends Component {
     console.log(person);
     if (
       this.state.firstName === "" ||
-      this.state.lastName === "" ||
-      this.state.age === ""
+      (this.state.lastName === "" && this.state.age === "")
     ) {
       return;
     } else {
