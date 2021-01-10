@@ -35,6 +35,11 @@ export class Home extends Component {
       const person = this.state.peopleArray[i];
       if (person.id == idToEdit) {
         console.log(person);
+        this.setState({
+          firstName: person.firstName,
+          lastName: person.lastName,
+          age: person.age,
+        });
       }
     }
   };
