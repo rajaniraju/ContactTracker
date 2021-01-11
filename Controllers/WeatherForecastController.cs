@@ -89,7 +89,10 @@ namespace TestApp2.Controllers
             }
             else 
             {
-                personFound.Age = person.Age;
+                personFound.Address = person.Address;
+                personFound.State = person.State;
+                personFound.Zip = person.Zip;
+                personFound.Phone = person.Phone;
                 _memoryCache.Set(CACHE_KEY, list);
             } 
 
@@ -118,7 +121,11 @@ namespace TestApp2.Controllers
 
             personFound.FirstName = person.FirstName;
             personFound.LastName = person.LastName;
-            personFound.Age = person.Age;
+            personFound.Address = person.Address;
+            personFound.State = person.State;
+            personFound.Zip = person.Zip;
+            personFound.Phone = person.Phone;
+
 
             _memoryCache.Set(CACHE_KEY, list);
 
