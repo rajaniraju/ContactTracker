@@ -311,10 +311,6 @@ export class Home extends Component {
             </Form.Group>
           </Form.Row>
 
-          <Form.Group id="formGridCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
-
           <Button
             onClick={this.setUserEntry}
             variant="outline-primary"
