@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Col } from 'react-bootstrap';
+import { Button, Form, Col } from "react-bootstrap";
 import "./row.js";
 import "./Home.css";
 import { Row } from "./row.js";
@@ -19,7 +19,7 @@ export class Home extends Component {
     lastName: "",
     address: "",
     address2: "",
-    city:"",
+    city: "",
     state: "",
     zip: "",
     phone: "",
@@ -221,65 +221,108 @@ export class Home extends Component {
     return (
       <div>
         <h1>Personal Details</h1>
-         <Form>
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridfName">
-                <Form.Label>First Name</Form.Label>
-                <Form.Control type="firstName" name="firstName" value={this.state.firstName} onChange={ this.handleTextOnChange}/>
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridlName">
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control type="lastName" name="lastName"value={this.state.lastName} onChange={ this.handleTextOnChange} />
-              </Form.Group>
-            </Form.Row>
-
-            <Form.Group controlId="formGridAddress1">
-              <Form.Label>Address</Form.Label>
-              <Form.Control type="address"name="address" value={this.state.address} onChange={ this.handleTextOnChange}/>
+        <Form>
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridfName">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+                type="firstName"
+                name="firstName"
+                value={this.state.firstName}
+                onChange={this.handleTextOnChange}
+              />
             </Form.Group>
 
-            <Form.Group controlId="formGridAddress2">
-              <Form.Label>Address 2</Form.Label>
-              <Form.Control type="address2"name="address2" value={this.state.address2} onChange={ this.handleTextOnChange} />
+            <Form.Group as={Col} controlId="formGridlName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                type="lastName"
+                name="lastName"
+                value={this.state.lastName}
+                onChange={this.handleTextOnChange}
+              />
+            </Form.Group>
+          </Form.Row>
+
+          <Form.Group controlId="formGridAddress1">
+            <Form.Label>Address</Form.Label>
+            <Form.Control
+              type="address"
+              name="address"
+              value={this.state.address}
+              onChange={this.handleTextOnChange}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formGridAddress2">
+            <Form.Label>Address 2</Form.Label>
+            <Form.Control
+              type="address2"
+              name="address2"
+              value={this.state.address2}
+              onChange={this.handleTextOnChange}
+            />
+          </Form.Group>
+
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridCity">
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                type="city"
+                name="city"
+                value={this.state.city}
+                onChange={this.handleTextOnChange}
+              />
             </Form.Group>
 
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridCity">
-                <Form.Label>City</Form.Label>
-                <Form.Control type="City"name="city" value={this.state.city} onChange={ this.handleTextOnChange}/>
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridState">
-                <Form.Label>State</Form.Label>
-                <Form.Control as="select" defaultValue="Choose..." name="state"value={this.state.city} onChange={ this.handleTextOnChange}>
-                  <option>Choose...</option>
-                  <option>...</option>
-                </Form.Control>
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridZip">
-                <Form.Label>Zip</Form.Label>
-                <Form.Control name="zip" value={this.state.zip} onChange={this.handleTextOnChange}/>
-              </Form.Group>
-            </Form.Row>
-
-            <Form.Group id="formGridCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
+            <Form.Group as={Col} controlId="formGridState">
+              <Form.Label>State</Form.Label>
+              <Form.Control
+                as="select"
+                type="state"
+                name="state"
+                value={this.state.state}
+                onChange={this.handleTextOnChange}
+              >
+                <option>Choose...</option>
+                <option>...</option>
+              </Form.Control>
             </Form.Group>
 
-            <Button onClick={this.setUserEntry} variant="primary" type="submit">
-              Add
-            </Button>
-            <Button onClick={this.onSaveUserEntry} variant="primary" type="submit">
-              Save
-            </Button>
-            <Button onClick={this.getUserEntry}variant="primary" type="submit">
-              Get
-            </Button>
-            <Button onClick={this.deleteUserEntry}variant="primary" type="submit">
-              Delete Selected
-            </Button>
+            <Form.Group as={Col} controlId="formGridZip">
+              <Form.Label>Zip</Form.Label>
+              <Form.Control
+                name="zip"
+                value={this.state.zip}
+                onChange={this.handleTextOnChange}
+              />
+            </Form.Group>
+          </Form.Row>
+
+          <Form.Group id="formGridCheckbox">
+            <Form.Check type="checkbox" label="Check me out" />
+          </Form.Group>
+
+          <Button onClick={this.setUserEntry} variant="primary" type="submit">
+            Add
+          </Button>
+          <Button
+            onClick={this.onSaveUserEntry}
+            variant="primary"
+            type="submit"
+          >
+            Save
+          </Button>
+          <Button onClick={this.getUserEntry} variant="primary" type="submit">
+            Get
+          </Button>
+          <Button
+            onClick={this.deleteUserEntry}
+            variant="primary"
+            type="submit"
+          >
+            Delete Selected
+          </Button>
         </Form>
         <div>
           <div className="container">
@@ -300,12 +343,10 @@ export class Home extends Component {
                   </tbody>
                 </table>
               </div>
-              </div>
             </div>
+          </div>
         </div>
-        </div>
-        
-      
+      </div>
     );
   }
 }
