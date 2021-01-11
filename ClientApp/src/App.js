@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';

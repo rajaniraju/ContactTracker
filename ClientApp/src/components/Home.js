@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import { Button, Form, Col } from 'react-bootstrap';
 import "./row.js";
 import "./Home.css";
 import { Row } from "./row.js";
-import 'bootstrap/dist/css/bootstrap.min.css';
 export class Home extends Component {
   static displayName = Home.name;
 
@@ -18,6 +18,8 @@ export class Home extends Component {
     firstName: "",
     lastName: "",
     address: "",
+    address2: "",
+    city:"",
     state: "",
     zip: "",
     phone: "",
@@ -35,6 +37,8 @@ export class Home extends Component {
         this.state.firstName,
         this.state.lastName,
         this.state.address,
+        this.state.address2,
+        this.state.city,
         this.state.state,
         this.state.zip,
         this.state.phone
@@ -47,7 +51,7 @@ export class Home extends Component {
       lastName: this.state.lastName,
       address: this.state.address,
       state: this.state.state,
-      zip:this.state.zip,
+      zip: this.state.zip,
       id: this.state.id,
     };
     //to do check entry point;
@@ -66,7 +70,14 @@ export class Home extends Component {
           console.log(result);
           this.setState({ peopleArray: result });
         });
-      this.setState({ firstName: "", lastName: "", address: "", state:"",zip:"",phone:"" });
+      this.setState({
+        firstName: "",
+        lastName: "",
+        address: "",
+        state: "",
+        zip: "",
+        phone: "",
+      });
     }
   };
 
@@ -82,7 +93,7 @@ export class Home extends Component {
           address: person.address,
           state: person.state,
           zip: person.zip,
-          phone:person.phone,
+          phone: person.phone,
           id: idToEdit,
         });
       }
@@ -158,14 +169,14 @@ export class Home extends Component {
       address: this.state.address,
       state: this.state.state,
       zip: this.state.zip,
-      phone:this.state.phone,
+      phone: this.state.phone,
     };
     console.log(person);
     if (
-      this.state.firstName === "" &&
-      this.state.lastName === "" &&
-      this.state.address === "" &&
-      this.state.zip === "" ||
+      (this.state.firstName === "" &&
+        this.state.lastName === "" &&
+        this.state.address === "" &&
+        this.state.zip === "") ||
       this.state.phone
     ) {
       return;
@@ -182,7 +193,14 @@ export class Home extends Component {
           console.log(result);
           this.setState({ peopleArray: result });
         });
-      this.setState({ firstName: "", lastName: "", address: "", state:"",zip:"",phone:"" });
+      this.setState({
+        firstName: "",
+        lastName: "",
+        address: "",
+        state: "",
+        zip: "",
+        phone: "",
+      });
     }
   };
 
@@ -203,120 +221,66 @@ export class Home extends Component {
     return (
       <div>
         <h1>Personal Details</h1>
-        <form>
-        <Form>
-  <Form.Row>
-    <Form.Group as={Col} controlId="formGridEmail">
-      <Form.Label>Email</Form.Label>
-      <Form.Control type="email" placeholder="Enter email" />
-    </Form.Group>
+         <Form>
+            <Form.Row>
+              <Form.Group as={Col} controlId="formGridfName">
+                <Form.Label>First Name</Form.Label>
+                <Form.Control type="firstName" name="firstName" value={this.state.firstName} onChange={ this.handleTextOnChange}/>
+              </Form.Group>
 
-    <Form.Group as={Col} controlId="formGridPassword">
-      <Form.Label>Password</Form.Label>
-      <Form.Control type="password" placeholder="Password" />
-    </Form.Group>
-  </Form.Row>
+              <Form.Group as={Col} controlId="formGridlName">
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control type="lastName" name="lastName"value={this.state.lastName} onChange={ this.handleTextOnChange} />
+              </Form.Group>
+            </Form.Row>
 
-  <Form.Group controlId="formGridAddress1">
-    <Form.Label>Address</Form.Label>
-    <Form.Control placeholder="1234 Main St" />
-  </Form.Group>
+            <Form.Group controlId="formGridAddress1">
+              <Form.Label>Address</Form.Label>
+              <Form.Control type="address"name="address" value={this.state.address} onChange={ this.handleTextOnChange}/>
+            </Form.Group>
 
-  <Form.Group controlId="formGridAddress2">
-    <Form.Label>Address 2</Form.Label>
-    <Form.Control placeholder="Apartment, studio, or floor" />
-  </Form.Group>
+            <Form.Group controlId="formGridAddress2">
+              <Form.Label>Address 2</Form.Label>
+              <Form.Control type="address2"name="address2" value={this.state.address2} onChange={ this.handleTextOnChange} />
+            </Form.Group>
 
-  <Form.Row>
-    <Form.Group as={Col} controlId="formGridCity">
-      <Form.Label>City</Form.Label>
-      <Form.Control />
-    </Form.Group>
+            <Form.Row>
+              <Form.Group as={Col} controlId="formGridCity">
+                <Form.Label>City</Form.Label>
+                <Form.Control type="City"name="city" value={this.state.city} onChange={ this.handleTextOnChange}/>
+              </Form.Group>
 
-    <Form.Group as={Col} controlId="formGridState">
-      <Form.Label>State</Form.Label>
-      <Form.Control as="select" defaultValue="Choose...">
-        <option>Choose...</option>
-        <option>...</option>
-      </Form.Control>
-    </Form.Group>
+              <Form.Group as={Col} controlId="formGridState">
+                <Form.Label>State</Form.Label>
+                <Form.Control as="select" defaultValue="Choose..." name="state"value={this.state.city} onChange={ this.handleTextOnChange}>
+                  <option>Choose...</option>
+                  <option>...</option>
+                </Form.Control>
+              </Form.Group>
 
-    <Form.Group as={Col} controlId="formGridZip">
-      <Form.Label>Zip</Form.Label>
-      <Form.Control />
-    </Form.Group>
-  </Form.Row>
+              <Form.Group as={Col} controlId="formGridZip">
+                <Form.Label>Zip</Form.Label>
+                <Form.Control name="zip" value={this.state.zip} onChange={this.handleTextOnChange}/>
+              </Form.Group>
+            </Form.Row>
 
-  <Form.Group id="formGridCheckbox">
-    <Form.Check type="checkbox" label="Check me out" />
-  </Form.Group>
+            <Form.Group id="formGridCheckbox">
+              <Form.Check type="checkbox" label="Check me out" />
+            </Form.Group>
 
-  <Button variant="primary" type="submit">
-    Submit
-  </Button>
-</Form>
-          <div className="form-group">
-            <label htmlFor="FirstName">FirstName</label>
-            <input
-              type="FirstName"
-              name="firstName"
-              value={this.state.firstName}
-              className="form-control"
-              onChange={this.handleTextOnChange}
-            ></input>
-          </div>
-          <div className="form-group">
-            <label htmlFor="LastName">LastName</label>
-            <input
-              type="LastName"
-              name="lastName"
-              value={this.state.lastName}
-              className="form-control"
-              onChange={this.handleTextOnChange}
-            ></input>
-          </div>
-          <div className="form-group">
-            <label htmlFor="Address">Address</label>
-            <input
-              type="Address"
-              name="Address"
-              value={this.state.address}
-              className="form-control"
-              onChange={this.handleTextOnChange}
-            ></input>
-          </div>
-          <div className="form-row">
-            <label htmlFor="State">State</label>
-            <input
-              type="State"
-              name="State"
-              value={this.state.state}
-              className="form-control"
-              onChange={this.handleTextOnChange}
-            ></input>
-          
-           
-            <label htmlFor="Zip">Zip</label>
-            <input
-              type="Zip"
-              name="Zip"
-              value={this.state.zip}
-              className="form-control"
-              onChange={this.handleTextOnChange}
-            ></input>
-          
-          
-            <label htmlFor="Phone">Phone Number</label>
-            <input
-              type="phone"
-              name="phone"
-              value={this.state.phone}
-              className="form-control"
-              onChange={this.handleTextOnChange}
-            ></input>
-          </div>
-        </form>
-
+            <Button onClick={this.setUserEntry} variant="primary" type="submit">
+              Add
+            </Button>
+            <Button onClick={this.onSaveUserEntry} variant="primary" type="submit">
+              Save
+            </Button>
+            <Button onClick={this.getUserEntry}variant="primary" type="submit">
+              Get
+            </Button>
+            <Button onClick={this.deleteUserEntry}variant="primary" type="submit">
+              Delete Selected
+            </Button>
+        </Form>
         <div>
           <div className="container">
             <div className="row">
@@ -336,17 +300,12 @@ export class Home extends Component {
                   </tbody>
                 </table>
               </div>
-              <br></br>
-              <div>
-                <button onClick={this.onSaveUserEntry}>Save</button>
-                <button onClick={this.setUserEntry}>Add</button>
-                <button onClick={this.getUserEntry}>Get</button>
-                <button onClick={this.deleteUserEntry}>Delete Selected</button>
               </div>
             </div>
-          </div>
         </div>
-      </div>
+        </div>
+        
+      
     );
   }
 }
