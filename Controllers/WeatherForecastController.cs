@@ -91,6 +91,7 @@ namespace TestApp2.Controllers
             {
                 personFound.Address = person.Address;
                 personFound.State = person.State;
+                personFound.City = person.City;
                 personFound.Zip = person.Zip;
                 personFound.Phone = person.Phone;
                 _memoryCache.Set(CACHE_KEY, list);
@@ -124,6 +125,7 @@ namespace TestApp2.Controllers
             personFound.Address = person.Address;
             personFound.State = person.State;
             personFound.Zip = person.Zip;
+            personFound.City = person.City;
             personFound.Phone = person.Phone;
 
 

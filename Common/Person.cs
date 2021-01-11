@@ -13,6 +13,7 @@ namespace TestApp2.Common
         public string State { get; set; }
         public int Zip { get; set; }
         public int Phone  {get;set;}
+        public int City { get; set; }
         public string Id { get; set; }
         public string FullName
         {
@@ -26,7 +27,7 @@ namespace TestApp2.Common
         {
             get
             {
-                return this.Address + " " + this.State + " " + this.Zip;
+                return this.Address + " " + this.State + " " +this.City+""+ this.Zip;
             }
         }
 
