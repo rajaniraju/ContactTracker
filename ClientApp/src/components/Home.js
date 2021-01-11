@@ -45,7 +45,8 @@ export class Home extends Component {
       );
     });
   };
-  onSaveUserEntry = () => {
+  onSaveUserEntry = (e) => {
+    e.preventDefault();
     const person = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -100,7 +101,8 @@ export class Home extends Component {
     }
   };
 
-  getUserEntry = () => {
+  getUserEntry = (e) => {
+    e.preventDefault();
     fetch(`https://localhost:${this.portNumber}/WeatherForecast/GetPerson/`)
       .then((res) => res.text())
       .then((text) => {
@@ -130,7 +132,8 @@ export class Home extends Component {
       });
   };
 
-  deleteUserEntry = () => {
+  deleteUserEntry = (e) => {
+    e.preventDefault();
     let table = this.tableRef.current;
     const idIndex = 4;
     const checkBoxIndex = 0;
@@ -162,7 +165,8 @@ export class Home extends Component {
       });
   };
 
-  setUserEntry = () => {
+  setUserEntry = (e) => {
+    e.preventDefault();
     const person = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -297,28 +301,44 @@ export class Home extends Component {
                 onChange={this.handleTextOnChange}
               />
             </Form.Group>
+            <Form.Group as={Col} controlId="formGridPhone">
+              <Form.Label>Phone Number</Form.Label>
+              <Form.Control
+                name="phone"
+                value={this.state.phone}
+                onChange={this.handleTextOnChange}
+              />
+            </Form.Group>
           </Form.Row>
 
           <Form.Group id="formGridCheckbox">
             <Form.Check type="checkbox" label="Check me out" />
           </Form.Group>
 
-          <Button onClick={this.setUserEntry} variant="primary" type="submit">
+          <Button
+            onClick={this.setUserEntry}
+            variant="outline-primary"
+            type="submit"
+          >
             Add
           </Button>
           <Button
             onClick={this.onSaveUserEntry}
-            variant="primary"
+            variant="outline-primary"
             type="submit"
           >
             Save
           </Button>
-          <Button onClick={this.getUserEntry} variant="primary" type="submit">
+          <Button
+            onClick={this.getUserEntry}
+            variant="outline-primary"
+            type="submit"
+          >
             Get
           </Button>
           <Button
             onClick={this.deleteUserEntry}
-            variant="primary"
+            variant="outline-primary"
             type="submit"
           >
             Delete Selected
