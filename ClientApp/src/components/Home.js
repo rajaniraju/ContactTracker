@@ -65,7 +65,7 @@ export class Home extends Component {
           console.log(result);
           this.setState({ peopleArray: result });
         });
-      this.setState({ firstName: "", lastName: "", age: "" });
+      this.setState({ firstName: "", lastName: "", address: "", state:"",zip:"",phone:"" });
     }
   };
 
@@ -78,7 +78,10 @@ export class Home extends Component {
         this.setState({
           firstName: person.firstName,
           lastName: person.lastName,
-          age: person.age,
+          address: person.address,
+          state: person.state,
+          zip: person.zip,
+          phone:person.phone,
           id: idToEdit,
         });
       }
@@ -151,12 +154,18 @@ export class Home extends Component {
     const person = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      age: this.state.age,
+      address: this.state.address,
+      state: this.state.state,
+      zip: this.state.zip,
+      phone:this.state.phone,
     };
     console.log(person);
     if (
-      this.state.firstName === "" ||
-      (this.state.lastName === "" && this.state.age === "")
+      this.state.firstName === "" &&
+      this.state.lastName === "" &&
+      this.state.address === "" &&
+      this.state.zip === "" ||
+      this.state.phone
     ) {
       return;
     } else {
@@ -172,7 +181,7 @@ export class Home extends Component {
           console.log(result);
           this.setState({ peopleArray: result });
         });
-      this.setState({ firstName: "", lastName: "", age: "" });
+      this.setState({ firstName: "", lastName: "", address: "", state:"",zip:"",phone:"" });
     }
   };
 
@@ -219,7 +228,7 @@ export class Home extends Component {
             <input
               type="Address"
               name="Address"
-              value={this.state.age}
+              value={this.state.address}
               className="form-control"
               onChange={this.handleTextOnChange}
             ></input>
@@ -235,7 +244,7 @@ export class Home extends Component {
             ></input>
           </div>
           <div className="form-group">
-            <label htmlFor="Zip">State</label>
+            <label htmlFor="Zip">Zip</label>
             <input
               type="Zip"
               name="Zip"
