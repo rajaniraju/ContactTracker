@@ -41,7 +41,10 @@ export class Row extends Component {
         </td>
         <td>{this.props.people.firstName}</td>
         <td>{this.props.people.lastName}</td>
-        <td>{this.props.people.age}</td>
+        <td>{this.props.people.address}</td>
+        <td>{this.props.people.state}</td>
+        <td>{this.props.people.zip}</td>
+        <td>{this.props.people.phone}</td>
         <td hidden={true}>{this.props.people.id}</td>
         <td>
           <button onClick={this.onRowEditClicked}>Edit</button>

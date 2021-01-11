@@ -30,14 +30,23 @@ export class Home extends Component {
     const userName = e.target.name;
     const enteringValue = e.target.value;
     this.setState({ [userName]: enteringValue }, () => {
-      console.log(this.state.firstName, this.state.lastName, this.state.age);
+      console.log(
+        this.state.firstName,
+        this.state.lastName,
+        this.state.address,
+        this.state.state,
+        this.state.zip,
+        this.state.phone
+      );
     });
   };
   onSaveUserEntry = () => {
     const person = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      age: this.state.age,
+      address: this.state.address,
+      state: this.state.state,
+      zip:this.state.zip,
       id: this.state.id,
     };
     //to do check entry point;
@@ -206,11 +215,41 @@ export class Home extends Component {
             ></input>
           </div>
           <div className="form-group">
-            <label htmlFor="Age">Age</label>
+            <label htmlFor="Address">Address</label>
             <input
-              type="Age"
-              name="age"
+              type="Address"
+              name="Address"
               value={this.state.age}
+              className="form-control"
+              onChange={this.handleTextOnChange}
+            ></input>
+          </div>
+          <div className="form-group">
+            <label htmlFor="State">State</label>
+            <input
+              type="State"
+              name="State"
+              value={this.state.state}
+              className="form-control"
+              onChange={this.handleTextOnChange}
+            ></input>
+          </div>
+          <div className="form-group">
+            <label htmlFor="Zip">State</label>
+            <input
+              type="Zip"
+              name="Zip"
+              value={this.state.zip}
+              className="form-control"
+              onChange={this.handleTextOnChange}
+            ></input>
+          </div>
+          <div className="form-group">
+            <label htmlFor="Phone">Phone Number</label>
+            <input
+              type="phone"
+              name="phone"
+              value={this.state.phone}
               className="form-control"
               onChange={this.handleTextOnChange}
             ></input>
@@ -227,7 +266,10 @@ export class Home extends Component {
                       <th></th>
                       <th>Firstname</th>
                       <th>Lastname</th>
-                      <th>Age</th>
+                      <th>Address</th>
+                      <th>State</th>
+                      <th>Zip</th>
+                      <th>Phone</th>
                     </tr>
                     {rows}
                   </tbody>
