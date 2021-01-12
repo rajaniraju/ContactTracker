@@ -176,36 +176,40 @@ export class Home extends Component {
       phone: this.state.phone,
     };
     console.log(person);
-    if (
+     if (
       (this.state.firstName === "" &&
         this.state.lastName === "" &&
         this.state.address === "" &&
-        this.state.zip === "") ||
-      this.state.phone
-    ) {
+        this.state.zip === "") 
+     )
+     {
       return;
-    } else {
-      fetch(`https://localhost:${this.portNumber}/WeatherForecast/SetPerson`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(person),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          console.log(result);
-          this.setState({ peopleArray: result });
-        });
-      this.setState({
-        firstName: "",
-        lastName: "",
-        address: "",
-        state: "",
-        zip: "",
-        phone: "",
+     }
+     else {
+    fetch(`https://localhost:${this.portNumber}/WeatherForecast/SetPerson`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(person),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        this.setState({ peopleArray: result });
+        console.log(this.state.peopleArray);
       });
-    }
+    this.setState({
+      firstName: "",
+      lastName: "",
+      address: "",
+      address2: "",
+      city: "",
+      state: "",
+      zip: "",
+      phone: "",
+    });
+     }
   };
 
   render() {
