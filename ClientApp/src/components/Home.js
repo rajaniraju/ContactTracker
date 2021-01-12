@@ -135,7 +135,7 @@ export class Home extends Component {
   deleteUserEntry = (e) => {
     e.preventDefault();
     let table = this.tableRef.current;
-    const idIndex = 4;
+    const idIndex = 7;
     const checkBoxIndex = 0;
     let selectedIds = [];
     for (var i = 0; i < table.rows.length; i++) {
