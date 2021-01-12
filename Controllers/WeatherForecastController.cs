@@ -90,6 +90,7 @@ namespace TestApp2.Controllers
             else 
             {
                 personFound.Address = person.Address;
+                personFound.Address2 = person.Address2;
                 personFound.State = person.State;
                 personFound.City = person.City;
                 personFound.Zip = person.Zip;
@@ -123,6 +124,8 @@ namespace TestApp2.Controllers
             personFound.FirstName = person.FirstName;
             personFound.LastName = person.LastName;
             personFound.Address = person.Address;
+            personFound.Address2 = person.Address2;
+            personFound.City = person.City;
             personFound.State = person.State;
             personFound.Zip = person.Zip;
             personFound.City = person.City;

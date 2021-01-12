@@ -9,7 +9,7 @@ export class Row extends Component {
   onRowEditClicked = () => {
     if (this.props.editCurrentRow) {
       let row = this.rowRef.current; //reference to row
-      let cellWithID = row.childNodes[4]; //will get the cell which has the id.
+      let cellWithID = row.childNodes[9]; //will get the cell which has the id.
       let idOfCell = cellWithID.innerText; //To get ID only.
      // console.log(row, cellWithID, idOfCell);
 
@@ -23,7 +23,7 @@ export class Row extends Component {
   onRowDeleteClicked = () => {
     if (this.props.deleteCurrentRow) {
       let row = this.rowRef.current; //reference to row
-      let cellWithID = row.childNodes[4]; //will get the cell which has the id.
+      let cellWithID = row.childNodes[9]; //will get the cell which has the id.
       let idOfCell = cellWithID.innerText; //To get ID only.
       console.log(row, cellWithID, idOfCell);
 
@@ -42,6 +42,8 @@ export class Row extends Component {
         <td>{this.props.people.firstName}</td>
         <td>{this.props.people.lastName}</td>
         <td>{this.props.people.address}</td>
+        <td>{this.props.people.address2}</td>
+        <td>{this.props.people.city}</td>
         <td>{this.props.people.state}</td>
         <td>{this.props.people.zip}</td>
         <td>{this.props.people.phone}</td>

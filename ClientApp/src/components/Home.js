@@ -51,6 +51,8 @@ export class Home extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       address: this.state.address,
+      address2: this.state.address2,
+      city: this.state.city,
       state: this.state.state,
       zip: this.state.zip,
       id: this.state.id,
@@ -75,6 +77,8 @@ export class Home extends Component {
         firstName: "",
         lastName: "",
         address: "",
+        address2: "",
+        city: "",
         state: "",
         zip: "",
         phone: "",
@@ -92,6 +96,8 @@ export class Home extends Component {
           firstName: person.firstName,
           lastName: person.lastName,
           address: person.address,
+          address2: person.address2,
+          city: person.city,
           state: person.state,
           zip: person.zip,
           phone: person.phone,
@@ -135,7 +141,7 @@ export class Home extends Component {
   deleteUserEntry = (e) => {
     e.preventDefault();
     let table = this.tableRef.current;
-    const idIndex = 7;
+    const idIndex = 9;
     const checkBoxIndex = 0;
     let selectedIds = [];
     for (var i = 0; i < table.rows.length; i++) {
@@ -171,45 +177,45 @@ export class Home extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       address: this.state.address,
+      address2: this.state.address2,
+      city: this.state.city,
       state: this.state.state,
       zip: this.state.zip,
       phone: this.state.phone,
     };
     console.log(person);
-     if (
-      (this.state.firstName === "" &&
-        this.state.lastName === "" &&
-        this.state.address === "" &&
-        this.state.zip === "") 
-     )
-     {
+    if (
+      this.state.firstName === "" &&
+      this.state.lastName === "" &&
+      this.state.address === "" &&
+      this.state.zip === ""
+    ) {
       return;
-     }
-     else {
-    fetch(`https://localhost:${this.portNumber}/WeatherForecast/SetPerson`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(person),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-        this.setState({ peopleArray: result });
-        console.log(this.state.peopleArray);
+    } else {
+      fetch(`https://localhost:${this.portNumber}/WeatherForecast/SetPerson`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(person),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result);
+          this.setState({ peopleArray: result });
+          console.log(this.state.peopleArray);
+        });
+      this.setState({
+        firstName: "",
+        lastName: "",
+        address: "",
+        address2: "",
+        city: "",
+        state: "",
+        zip: "",
+        phone: "",
       });
-    this.setState({
-      firstName: "",
-      lastName: "",
-      address: "",
-      address2: "",
-      city: "",
-      state: "",
-      zip: "",
-      phone: "",
-    });
-     }
+    }
   };
 
   render() {
@@ -355,7 +361,9 @@ export class Home extends Component {
                       <th>Firstname</th>
                       <th>Lastname</th>
                       <th>Address</th>
+                      <th>Address2</th>
                       <th>State</th>
+                      <th>City</th>
                       <th>Zip</th>
                       <th>Phone</th>
                     </tr>

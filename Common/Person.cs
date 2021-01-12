@@ -10,6 +10,7 @@ namespace TestApp2.Common
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
+        public string Address2 { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
         public string Phone  {get;set;}
@@ -27,7 +28,7 @@ namespace TestApp2.Common
         {
             get
             {
-                return this.Address + " " + this.State + " " +this.City+""+ this.Zip;
+                return (this.Address + " "+ this.Address2 +" "+ this.State + " " +this.City+""+ this.Zip);
             }
         }
 
