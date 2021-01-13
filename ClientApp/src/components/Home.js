@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Button, Form, Col } from "react-bootstrap";
-import "./row.js";
 import "./Home.css";
 import { Row } from "./row.js";
+import { stateArray } from "./state";
 export class Home extends Component {
   static displayName = Home.name;
 
@@ -10,7 +10,6 @@ export class Home extends Component {
 
   constructor(props) {
     super(props);
-
     this.tableRef = React.createRef();
   }
 
@@ -219,6 +218,9 @@ export class Home extends Component {
   };
 
   render() {
+    let stateSelected = stateArray.map((state, index) => {
+      return <option key={index}>{state.code}</option>;
+    });
     let rows = this.state.peopleArray.map((people, index) => {
       //console.log(index);
       return (
@@ -299,7 +301,7 @@ export class Home extends Component {
                 onChange={this.handleTextOnChange}
               >
                 <option>Choose...</option>
-                <option>...</option>
+                {stateSelected}
               </Form.Control>
             </Form.Group>
 
