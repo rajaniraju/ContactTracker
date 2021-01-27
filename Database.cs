@@ -8,8 +8,17 @@ namespace TestApp2
         SqlConnection _cnn;
         Database()
         {
-            string connetionString = @"Server=WIN-50GP30FGO75;Database=Demodb;User ID=sa;Password=demol23";
+            string connetionString = @"Server=SQL Server 15.0.2080.9 - ADMIN-LT\Rajani;Database=Address Tracker;Integrated Security=true";
             _cnn = new SqlConnection(connetionString);
+        }
+
+        public void Test() 
+        {
+            _cnn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = _cnn;
+            cmd.CommandText = "";
+            _cnn.Close();
         }
     }
 }
