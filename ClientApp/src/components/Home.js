@@ -106,17 +106,17 @@ export class Home extends Component {
     }
   };
 
-  getUserEntry = (e) => {
+  getPersonList = (e) => {
     e.preventDefault();
-    fetch(`https://localhost:${this.portNumber}/WeatherForecast/GetPerson/`)
+    fetch(`https://localhost:${this.portNumber}/WeatherForecast/GetPersonList/`)
       .then((res) => res.text())
       .then((text) => {
         return text.length ? JSON.parse(text) : null;
       })
-      .then((peopleArray) => {
-        console.log("#100", peopleArray);
-        if (peopleArray) {
-          this.setState({ peopleArray: peopleArray });
+      .then((personList) => {
+        console.log("#100", personList);
+        if (personList) {
+          this.setState({ peopleArray: personList });
         }
       });
   };
@@ -338,7 +338,7 @@ export class Home extends Component {
             Save
           </Button>
           <Button
-            onClick={this.getUserEntry}
+            onClick={this.getPersonList}
             variant="outline-primary"
             type="submit"
           >

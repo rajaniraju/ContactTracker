@@ -1,24 +1,43 @@
 ﻿
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using TestApp2.Common;
 
 namespace TestApp2
 {
     public class Database
     {
         SqlConnection _cnn;
-        Database()
+        public Database()
         {
-            string connetionString = @"Server=SQL Server 15.0.2080.9 - ADMIN-LT\Rajani;Database=Address Tracker;Integrated Security=true";
+            string connetionString = @"Server=ADMIN-LT;Database=AddressTracker;Integrated Security=true";
             _cnn = new SqlConnection(connetionString);
         }
 
-        public void Test() 
+        public List<Person> GetPersonList() 
         {
             _cnn.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = _cnn;
-            cmd.CommandText = "";
+            string strSQL = "SELECT * FROM PersonalInformation";
+
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(strSQL, _cnn);
+            adapter.Fill(table);
+            List<Person> personList = new List<Person>();
+
+            foreach (DataRow row in table.Rows) 
+            {
+                Person person = new Person();
+                person.FirstName = row["FirstName"].ToString();
+                person.LastName = row["LastName"].ToString();
+                person.Address = row["Address"].ToString();
+                person.State = row["State"].ToString();
+                personList.Add(person);
+            }       
+
             _cnn.Close();
+
+            return personList;
         }
     }
 }

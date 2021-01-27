@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TestApp2.Common;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace TestApp2.Controllers
 {
@@ -54,15 +56,24 @@ namespace TestApp2.Controllers
         //    person.Age = age;
         //    return person;
         //}
+        //[HttpGet]
+        //[Route("GetPerson")]
+        //public object GetPerson(Database database)
+        //{
+        //    var database = new Database() 
+        //    return database;
+
+            
+        //}
 
         [HttpGet]
-        [Route("GetPerson")]
-        public object GetPerson()
+        [Route("GetPersonList")]
+        public List<Person> GetPersonList()
         {
-            var person = _memoryCache.Get(CACHE_KEY);
-            return person;
-
-            //}
+            //var personList = _memoryCache.Get<List<Person>>(CACHE_KEY);
+            Database db = new Database();
+            var personList = db.GetPersonList();
+            return personList;            
         }
 
         [HttpPost]
