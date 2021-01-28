@@ -218,9 +218,7 @@ export class Home extends Component {
   };
 
   render() {
-    let stateSelected = stateArray.map((state, index) => {
-      return <option key={index}>{state.code}</option>;
-    });
+    
     let rows = this.state.peopleArray.map((people, index) => {
       //console.log(index);
       return (
@@ -236,143 +234,25 @@ export class Home extends Component {
     });
     return (
       <div>
-        <h1>Personal Details</h1>
-        <Form>
-          <Form.Row>
-            <Form.Group as={Col} controlId="formGridfName">
-              <Form.Label>First Name</Form.Label>
-              <Form.Control
-                type="firstName"
-                name="firstName"
-                value={this.state.firstName}
-                onChange={this.handleTextOnChange}
-              />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridlName">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control
-                type="lastName"
-                name="lastName"
-                value={this.state.lastName}
-                onChange={this.handleTextOnChange}
-              />
-            </Form.Group>
-          </Form.Row>
-
-          <Form.Group controlId="formGridAddress1">
-            <Form.Label>Address</Form.Label>
-            <Form.Control
-              type="address"
-              name="address"
-              value={this.state.address}
-              onChange={this.handleTextOnChange}
-            />
-          </Form.Group>
-
-          <Form.Group controlId="formGridAddress2">
-            <Form.Label>Address 2</Form.Label>
-            <Form.Control
-              type="address2"
-              name="address2"
-              value={this.state.address2}
-              onChange={this.handleTextOnChange}
-            />
-          </Form.Group>
-
-          <Form.Row>
-            <Form.Group as={Col} controlId="formGridCity">
-              <Form.Label>City</Form.Label>
-              <Form.Control
-                type="city"
-                name="city"
-                value={this.state.city}
-                onChange={this.handleTextOnChange}
-              />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridState">
-              <Form.Label>State</Form.Label>
-              <Form.Control
-                as="select"
-                type="state"
-                name="state"
-                value={this.state.state}
-                onChange={this.handleTextOnChange}
-              >
-                <option>Choose...</option>
-                {stateSelected}
-              </Form.Control>
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridZip">
-              <Form.Label>Zip</Form.Label>
-              <Form.Control
-                name="zip"
-                value={this.state.zip}
-                onChange={this.handleTextOnChange}
-              />
-            </Form.Group>
-            <Form.Group as={Col} controlId="formGridPhone">
-              <Form.Label>Phone Number</Form.Label>
-              <Form.Control
-                name="phone"
-                value={this.state.phone}
-                onChange={this.handleTextOnChange}
-              />
-            </Form.Group>
-          </Form.Row>
-
-          <Button
-            onClick={this.setUserEntry}
-            variant="outline-primary"
-            type="submit"
-          >
-            Add
-          </Button>
-          <Button
-            onClick={this.onSaveUserEntry}
-            variant="outline-primary"
-            type="submit"
-          >
-            Save
-          </Button>
-          <Button
-            onClick={this.getPersonList}
-            variant="outline-primary"
-            type="submit"
-          >
-            Get
-          </Button>
-          <Button
-            onClick={this.deleteUserEntry}
-            variant="outline-primary"
-            type="submit"
-          >
-            Delete Selected
-          </Button>
-        </Form>
-        <div>
-          <div className="container">
-            <div className="row">
-              <div className="col s12 board">
-                <table ref={this.tableRef} style={{ width: "100%" }}>
-                  <tbody>
-                    <tr>
-                      <th></th>
-                      <th>Firstname</th>
-                      <th>Lastname</th>
-                      <th>Address</th>
-                      <th>Address2</th>
-                      <th>State</th>
-                      <th>City</th>
-                      <th>Zip</th>
-                      <th>Phone</th>
-                    </tr>
-                    {rows}
-                  </tbody>
-                </table>
-              </div>
+        <div className="container">
+          <div className="row">
+            <div className="col s12 board">
+              <table ref={this.tableRef} style={{ width: "100%" }}>
+                <tbody>
+                  <tr>
+                    <th></th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Address</th>
+                    <th>Address2</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Zip</th>
+                    <th>Phone</th>
+                  </tr>
+                  {rows}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

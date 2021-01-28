@@ -70,7 +70,6 @@ namespace TestApp2.Controllers
         [Route("GetPersonList")]
         public List<Person> GetPersonList()
         {
-            //var personList = _memoryCache.Get<List<Person>>(CACHE_KEY);
             Database db = new Database();
             var personList = db.GetPersonList();
             return personList;            
