@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Button, Form, Col } from "react-bootstrap";
 import "./Home.css";
 import { Row } from "./row.js";
-import { stateArray } from "./state";
 export class Home extends Component {
   static displayName = Home.name;
 
@@ -27,63 +26,11 @@ export class Home extends Component {
     displayList: [],
   };
 
-  handleTextOnChange = (e) => {
-    console.log(e.target.name, e.target.value);
-    const userName = e.target.name;
-    const enteringValue = e.target.value;
-    this.setState({ [userName]: enteringValue }, () => {
-      console.log(
-        this.state.firstName,
-        this.state.lastName,
-        this.state.address,
-        this.state.address2,
-        this.state.city,
-        this.state.state,
-        this.state.zip,
-        this.state.phone
-      );
-    });
-  };
-  onSaveUserEntry = (e) => {
-    e.preventDefault();
-    const person = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      address: this.state.address,
-      address2: this.state.address2,
-      city: this.state.city,
-      state: this.state.state,
-      zip: this.state.zip,
-      id: this.state.id,
-    };
-    //to do check entry point;
-    if (person == null) {
-      return;
-    } else {
-      fetch(`https://localhost:${this.portNumber}/WeatherForecast/SavePerson`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(person),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          console.log(result);
-          this.setState({ peopleArray: result });
-        });
-      this.setState({
-        firstName: "",
-        lastName: "",
-        address: "",
-        address2: "",
-        city: "",
-        state: "",
-        zip: "",
-        phone: "",
-      });
-    }
-  };
+  
+  componentDidMount() {
+    window.addEventListener('load', this.getPersonList);
+    //when the window is up person list is loaded.
+  }
 
   onEditUserEntry = (params) => {
     let idToEdit = params.id;

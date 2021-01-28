@@ -40,7 +40,48 @@ export class Details extends Component {
       );
     });
   };
-  getPersonList = (e) => {
+  onSaveUserEntry = (e) => {
+    e.preventDefault();
+    const person = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      address: this.state.address,
+      address2: this.state.address2,
+      city: this.state.city,
+      state: this.state.state,
+      zip: this.state.zip,
+      id: this.state.id,
+    };
+    //to do check entry point;
+    if (person == null) {
+      return;
+    } else {
+      fetch(`https://localhost:${this.portNumber}/WeatherForecast/SavePerson`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(person),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result);
+          this.setState({ peopleArray: result });
+        });
+      this.setState({
+        firstName: "",
+        lastName: "",
+        address: "",
+        address2: "",
+        city: "",
+        state: "",
+        zip: "",
+        phone: "",
+      });
+    }
+  };
+
+getPersonList = (e) => {
     e.preventDefault();
     fetch(`https://localhost:${this.portNumber}/WeatherForecast/GetPersonList/`)
       .then((res) => res.text())
