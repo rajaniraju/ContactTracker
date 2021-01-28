@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./Home.css";
+import { Button, Form, Col } from "react-bootstrap";
+
 export class Row extends Component {
   constructor(props) {
     super(props);
@@ -49,10 +51,10 @@ export class Row extends Component {
         <td>{this.props.people.phone}</td>
         <td hidden={true}>{this.props.people.id}</td>
         <td>
-          <button onClick={this.onRowEditClicked}>Edit</button>
+          <Button onClick={this.onRowEditClicked}>Edit</Button>
         </td>
         <td>
-          <button onClick={this.onRowDeleteClicked}>Delete</button>
+          <Button onClick={this.onRowDeleteClicked}>Delete</Button>
         </td>
       </tr>
     );

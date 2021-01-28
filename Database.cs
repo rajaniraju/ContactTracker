@@ -31,7 +31,13 @@ namespace TestApp2
                 person.FirstName = row["FirstName"].ToString();
                 person.LastName = row["LastName"].ToString();
                 person.Address = row["Address"].ToString();
+                person.Address2 = row["Address2"].ToString();
+                person.City = row["City"].ToString();
+                person.Phone = row["Phone"].ToString();
+                person.Zip = row["Zip"].ToString();
                 person.State = row["State"].ToString();
+                //person.Id = row["GUID"].ToString();
+                
                 personList.Add(person);
             }       
 

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button, Form, Col } from "react-bootstrap";
 import "./Home.css";
 import { Row } from "./row.js";
 export class Home extends Component {
@@ -26,10 +25,10 @@ export class Home extends Component {
     displayList: [],
   };
 
-  
   componentDidMount() {
-    window.addEventListener('load', this.getPersonList);
+    this.getPersonList();
     //when the window is up person list is loaded.
+    //Can also put this statement in constructor.
   }
 
   onEditUserEntry = (params) => {
@@ -53,8 +52,8 @@ export class Home extends Component {
     }
   };
 
-  getPersonList = (e) => {
-    e.preventDefault();
+  getPersonList = () => {
+    //e.preventDefault();
     fetch(`https://localhost:${this.portNumber}/WeatherForecast/GetPersonList/`)
       .then((res) => res.text())
       .then((text) => {
@@ -165,7 +164,6 @@ export class Home extends Component {
   };
 
   render() {
-    
     let rows = this.state.peopleArray.map((people, index) => {
       //console.log(index);
       return (
