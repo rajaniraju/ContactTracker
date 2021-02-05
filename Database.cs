@@ -18,7 +18,7 @@ namespace TestApp2
         public List<Person> GetPersonList() 
         {
             _cnn.Open();
-            string strSQL = "SELECT Guid [UID], * FROM PersonalInformation";
+            string strSQL = "SELECT * FROM PersonalInformation";
 
             DataTable table = new DataTable();
             SqlDataAdapter adapter = new SqlDataAdapter(strSQL, _cnn);
