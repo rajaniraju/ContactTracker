@@ -18,7 +18,7 @@ namespace TestApp2
         public List<Person> GetPersonList() 
         {
             _cnn.Open();
-            string strSQL = "SELECT * FROM PersonalInformation";
+            string strSQL = "SELECT Guid [UID], * FROM PersonalInformation";
 
             DataTable table = new DataTable();
             SqlDataAdapter adapter = new SqlDataAdapter(strSQL, _cnn);
@@ -36,7 +36,7 @@ namespace TestApp2
                 person.Phone = row["Phone"].ToString();
                 person.Zip = row["Zip"].ToString();
                 person.State = row["State"].ToString();
-                //person.Id = row["GUID"].ToString();
+                person.Id = row["GUID"].ToString();
                 
                 personList.Add(person);
             }       

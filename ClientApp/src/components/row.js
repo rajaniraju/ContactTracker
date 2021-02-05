@@ -49,7 +49,7 @@ export class Row extends Component {
         <td>{this.props.people.state}</td>
         <td>{this.props.people.zip}</td>
         <td>{this.props.people.phone}</td>
-        <td hidden={true}>{this.props.people.id}</td>
+        <td /*hidden={true}*/>{this.props.people.id}</td>
         <td>
           <Button onClick={this.onRowEditClicked}>Edit</Button>
         </td>

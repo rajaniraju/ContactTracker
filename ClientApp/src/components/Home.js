@@ -53,7 +53,6 @@ export class Home extends Component {
   };
 
   getPersonList = () => {
-    //e.preventDefault();
     fetch(`https://localhost:${this.portNumber}/WeatherForecast/GetPersonList/`)
       .then((res) => res.text())
       .then((text) => {
@@ -194,6 +193,7 @@ export class Home extends Component {
                     <th>City</th>
                     <th>Zip</th>
                     <th>Phone</th>
+                    <th>id</th>
                   </tr>
                   {rows}
                 </tbody>

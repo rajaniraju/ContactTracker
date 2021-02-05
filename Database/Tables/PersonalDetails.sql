@@ -14,7 +14,8 @@ CREATE TABLE [dbo].[PersonalInformation](
 	[State] [nchar](10) NULL,
 	[City] [nchar](10) NULL,
 	[Zip] [nchar](10) NULL,
-	[Phone] [nchar](10) NULL
+	[Phone] [nchar](10) NULL,
+	[GUID][nvarchar](50) NOT NULL,
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
