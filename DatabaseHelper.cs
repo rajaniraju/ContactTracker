@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -6,10 +7,10 @@ using TestApp2.Common;
 
 namespace TestApp2
 {
-    public class Database
+    public class DatabaseHelper
     {
         SqlConnection _cnn;
-        public Database()
+        public DatabaseHelper()
         {
             string connetionString = @"Server=ADMIN-LT;Database=AddressTracker;Integrated Security=true";
             _cnn = new SqlConnection(connetionString);
@@ -44,6 +45,17 @@ namespace TestApp2
             _cnn.Close();
 
             return personList;
+        }
+        public void AddPerson(Person person)
+        {
+            _cnn.Open();
+            var newGuid = Guid.NewGuid();
+            string insertSql = "INSERT INTO PersonalInformation(FirstName, LastName, Address, Address2, State, City, Zip, Phone, Guid)";
+            insertSql += $" VALUES('{person.FirstName}', '{person.LastName}', '{person.Address}', '{person.Address2}', '{person.State}', '{person.City}', '{person.Zip}', '{person.Phone}', '{newGuid}'";
+
+            SqlCommand cmd = new SqlCommand(insertSql, _cnn);
+            cmd.ExecuteNonQuery();
+            _cnn.Close();
         }
     }
 }

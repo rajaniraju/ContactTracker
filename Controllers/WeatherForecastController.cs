@@ -67,20 +67,25 @@ namespace TestApp2.Controllers
         [Route("GetPersonList")]
         public List<Person> GetPersonList()
         {
-            Database db = new Database();
+            DatabaseHelper db = new DatabaseHelper();
             var personList = db.GetPersonList();
             return personList;            
         }
 
         [HttpPost]
-        [Route("SetPerson")]
-        public object SetPerson([FromBody] Person person)
+        [Route("AddPerson")]
+        public object AddPerson([FromBody] Person person)
         {
             if (person == null)
             {
                 return null;
             }
 
+            DatabaseHelper db = new DatabaseHelper();
+            db.AddPerson(person);
+            return null;
+
+            /*
             List<Person> list = _memoryCache.Get<List<Person>>(CACHE_KEY);
 
             if (list == null) {
@@ -106,6 +111,7 @@ namespace TestApp2.Controllers
             } 
 
             return list;
+            */
         }
         [HttpPost]
         [Route("SavePerson")]
