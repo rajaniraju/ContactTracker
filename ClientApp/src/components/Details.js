@@ -6,6 +6,7 @@ import { stateArray } from "./state";
 
 export class Details extends Component {
   static displayName = Details.name;
+   portNumber = "44300";
 
   constructor(props) {
     super(props);
@@ -39,6 +40,46 @@ export class Details extends Component {
         this.state.phone
       );
     });
+  };
+   addUserEntry = (e) => {
+   e.preventDefault();
+    const person = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      address: this.state.address,
+      address2: this.state.address2,
+      city: this.state.city,
+      state: this.state.state,
+      zip: this.state.zip,
+      phone: this.state.phone,
+    };
+    console.log(person);
+    if (
+      this.state.firstName === "" &&
+      this.state.lastName === "" &&
+      this.state.address === "" &&
+      this.state.zip === ""
+    ) {
+      return;
+    } else {
+      fetch(`https://localhost:${this.portNumber}/WeatherForecast/AddPerson`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(person),
+      })
+        .then((res) => {
+          console.log(res);
+          //todo
+          // go to home
+        })
+    //     .then((result) => {
+    //       console.log(result);
+    //       this.setState({ peopleArray: result });
+    //       console.log(this.state.peopleArray);
+    //     });
+     }
   };
   onSaveUserEntry = (e) => {
     e.preventDefault();
@@ -191,7 +232,7 @@ getPersonList = (e) => {
             </Form.Row>
 
             <Button
-              onClick={this.setUserEntry}
+              onClick={this.addUserEntry}
               variant="outline-primary"
               type="submit"
             >

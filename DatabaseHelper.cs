@@ -51,7 +51,7 @@ namespace TestApp2
             _cnn.Open();
             var newGuid = Guid.NewGuid();
             string insertSql = "INSERT INTO PersonalInformation(FirstName, LastName, Address, Address2, State, City, Zip, Phone, Guid)";
-            insertSql += $" VALUES('{person.FirstName}', '{person.LastName}', '{person.Address}', '{person.Address2}', '{person.State}', '{person.City}', '{person.Zip}', '{person.Phone}', '{newGuid}'";
+            insertSql += $" VALUES('{person.FirstName}', '{person.LastName}', '{person.Address}', '{person.Address2}', '{person.State}', '{person.City}', '{person.Zip}', '{person.Phone}', '{newGuid}');";
 
             SqlCommand cmd = new SqlCommand(insertSql, _cnn);
             cmd.ExecuteNonQuery();
