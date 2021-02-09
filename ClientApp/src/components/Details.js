@@ -6,7 +6,7 @@ import { stateArray } from "./state";
 
 export class Details extends Component {
   static displayName = Details.name;
-   portNumber = "44300";
+  portNumber = "44300";
 
   constructor(props) {
     super(props);
@@ -41,8 +41,8 @@ export class Details extends Component {
       );
     });
   };
-   addUserEntry = (e) => {
-   e.preventDefault();
+  addUserEntry = (e) => {
+    e.preventDefault();
     const person = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -68,18 +68,17 @@ export class Details extends Component {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(person),
-      })
-        .then((res) => {
-          console.log(res);
-          //todo
-          // go to home
-        })
-    //     .then((result) => {
-    //       console.log(result);
-    //       this.setState({ peopleArray: result });
-    //       console.log(this.state.peopleArray);
-    //     });
-     }
+      }).then((res) => {
+        console.log(res);
+        //todo
+        // go to home
+      });
+      //     .then((result) => {
+      //       console.log(result);
+      //       this.setState({ peopleArray: result });
+      //       console.log(this.state.peopleArray);
+      //     });
+    }
   };
   onSaveUserEntry = (e) => {
     e.preventDefault();
@@ -122,7 +121,7 @@ export class Details extends Component {
     }
   };
 
-getPersonList = (e) => {
+  getPersonList = (e) => {
     e.preventDefault();
     fetch(`https://localhost:${this.portNumber}/WeatherForecast/GetPersonList/`)
       .then((res) => res.text())
@@ -236,28 +235,15 @@ getPersonList = (e) => {
               variant="outline-primary"
               type="submit"
             >
-              Add
-            </Button>
-            <Button
-              onClick={this.onSaveUserEntry}
-              variant="outline-primary"
-              type="submit"
-            >
               Save
             </Button>
-            <Button
-              onClick={this.getPersonList}
-              variant="outline-primary"
-              type="submit"
-            >
-              Get
-            </Button>
+
             <Button
               onClick={this.deleteUserEntry}
               variant="outline-primary"
               type="submit"
             >
-              Delete Selected
+              Delete
             </Button>
           </Form>
         </div>
