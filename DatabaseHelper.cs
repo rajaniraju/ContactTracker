@@ -57,5 +57,13 @@ namespace TestApp2
             cmd.ExecuteNonQuery();
             _cnn.Close();
         }
+        //public List<personList>deletePerson(Person person)
+        //{
+        //    _cnn.Open();
+
+
+        //    _cnn.Close();
+
+        //}
     }
 }

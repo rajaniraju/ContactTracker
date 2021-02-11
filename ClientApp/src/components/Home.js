@@ -67,13 +67,13 @@ export class Home extends Component {
   };
   onRowDeleted = (params) => {
     console.log("from row:", params);
-    let idsToDelete = [params.id];
+    let idToDelete = [params.id];
     fetch(`https://localhost:${this.portNumber}/WeatherForecast/DeleteEntry`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(idsToDelete),
+      body: JSON.stringify(idToDelete),
     })
       .then((res) => res.json())
       .then((result) => {

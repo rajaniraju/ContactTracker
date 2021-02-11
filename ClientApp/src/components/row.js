@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 import "./Home.css";
-import { Button, Form, Col } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { FaTrashAlt, FaUserEdit } from "react-icons/fa";
 
 export class Row extends Component {
   constructor(props) {
     super(props);
     this.rowRef = React.createRef();
   }
-  
+
   onRowEditClicked = () => {
     if (this.props.editCurrentRow) {
       let row = this.rowRef.current; //reference to row
       let cellWithID = row.childNodes[9]; //will get the cell which has the id.
       let idOfCell = cellWithID.innerText; //To get ID only.
-     // console.log(row, cellWithID, idOfCell);
+      // console.log(row, cellWithID, idOfCell);
 
       const params = {
         id: idOfCell,
@@ -51,10 +52,14 @@ export class Row extends Component {
         <td>{this.props.people.phone}</td>
         <td /*hidden={true}*/>{this.props.people.id}</td>
         <td>
-          <Button onClick={this.onRowEditClicked}>Edit</Button>
+          <Button onClick={this.onRowEditClicked}>
+            <FaUserEdit />
+          </Button>
         </td>
         <td>
-          <Button onClick={this.onRowDeleteClicked}>Delete</Button>
+          <Button onClick={this.onRowDeleteClicked}>
+            <FaTrashAlt />
+          </Button>
         </td>
       </tr>
     );

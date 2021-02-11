@@ -157,7 +157,12 @@ namespace TestApp2.Controllers
             var count = list.RemoveAll(p => arr.ToList().Contains(p.Id));
 
             _memoryCache.Set(CACHE_KEY, list);
-            return list;
+            var array = arr.Length;
+            
+            DatabaseHelper db = new DatabaseHelper();
+            //var personList = db.deletePerson();
+            return null;
+            
         }
 
     }
