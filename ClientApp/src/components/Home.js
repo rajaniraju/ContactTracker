@@ -67,13 +67,13 @@ export class Home extends Component {
   };
   onRowDeleted = (params) => {
     console.log("from row:", params);
-    let idToDelete = [params.id];
+
     fetch(`https://localhost:${this.portNumber}/WeatherForecast/DeleteEntry`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(idToDelete),
+      body: JSON.stringify(params.id),
     })
       .then((res) => res.json())
       .then((result) => {
@@ -82,7 +82,7 @@ export class Home extends Component {
       });
   };
 
-  deleteUserEntry = (e) => {
+ /* deleteUserEntry = (e) => {
     e.preventDefault();
     let table = this.tableRef.current;
     const idIndex = 9;
@@ -113,7 +113,7 @@ export class Home extends Component {
         console.log(result);
         this.setState({ peopleArray: result });
       });
-  };
+  };*/
 
  
 

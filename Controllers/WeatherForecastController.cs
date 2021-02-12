@@ -151,17 +151,18 @@ namespace TestApp2.Controllers
         }
         [HttpPost]
         [Route("DeleteEntry")]
-        public object DeleteEntry([FromBody] string[]arr)
+        public object DeleteEntry([FromBody] string id)
         {
-            List<Person> list = _memoryCache.Get<List<Person>>(CACHE_KEY);
-            var count = list.RemoveAll(p => arr.ToList().Contains(p.Id));
+            
+           // List<Person> list = _memoryCache.Get<List<Person>>(CACHE_KEY);
+            //var count = list.RemoveAll(p => arr.ToList().Contains(p.Id));
 
-            _memoryCache.Set(CACHE_KEY, list);
-            var array = arr.Length;
+           // _memoryCache.Set(CACHE_KEY, list);
+            
             
             DatabaseHelper db = new DatabaseHelper();
-            //var personList = db.deletePerson();
-            return null;
+            var personList = db.DeletePerson(id);
+            return personList;
             
         }
 

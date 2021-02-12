@@ -57,13 +57,16 @@ namespace TestApp2
             cmd.ExecuteNonQuery();
             _cnn.Close();
         }
-        //public List<personList>deletePerson(Person person)
-        //{
-        //    _cnn.Open();
+        public List<Person> DeletePerson(string id)
+        {
+           _cnn.Open();
+            string deleteSqlRow = "DELETE FROM PersonalInformation WHERE Guid='" + id + "'";
+            SqlCommand cmd = new SqlCommand(deleteSqlRow, _cnn);           
+            cmd.ExecuteNonQuery();
+           _cnn.Close();
 
-
-        //    _cnn.Close();
-
-        //}
+            List<Person> list = GetPersonList();
+            return list;
+        }
     }
 }
