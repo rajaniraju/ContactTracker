@@ -80,7 +80,7 @@ export class Details extends Component {
       //     });
     }
   };
-  onSaveUserEntry = (e) => {
+  /*onSaveUserEntry = (e) => {
     e.preventDefault();
     const person = {
       firstName: this.state.firstName,
@@ -119,7 +119,7 @@ export class Details extends Component {
         phone: "",
       });
     }
-  };
+  };*/
 
   getPersonList = (e) => {
     e.preventDefault();
