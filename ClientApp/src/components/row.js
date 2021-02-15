@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import "./Home.css";
 import { Button } from "react-bootstrap";
 import { FaTrashAlt, FaUserEdit } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { NavLink } from "reactstrap";
+
 
 export class Row extends Component {
     constructor(props) {

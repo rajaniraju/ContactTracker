@@ -5,7 +5,7 @@ import { stateArray } from "./state";
 
 export class Details extends Component {
     static displayName = Details.name;
-    portNumber = "5001";
+    portNumber = "44300";
 
     constructor(props) {
         super(props);
@@ -33,13 +33,13 @@ export class Details extends Component {
             this.setState({
                 firstName: person.firstName,
                 lastName: person.lastName,
-                address: "",
-                address2: "",
-                city: "",
-                state: "",
-                zip: "",
-                phone: "",
-                id: "",
+                address: person.address,
+                address2: person.address2,
+                city: person.city,
+                state: person.state,
+                zip: person.zip,
+                phone: person.phone,
+                id: person.id,
             });
         }
     }

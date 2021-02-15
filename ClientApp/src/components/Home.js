@@ -5,7 +5,7 @@ import { Row } from "./row.js";
 export class Home extends Component {
     static displayName = Home.name;
 
-    portNumber = "5001";
+    portNumber = "44300";
 
     constructor(props) {
         super(props);
