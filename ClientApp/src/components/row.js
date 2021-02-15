@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./Home.css";
 import { Button } from "react-bootstrap";
 import { FaTrashAlt, FaUserEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { NavLink } from "reactstrap";
 
 export class Row extends Component {
   constructor(props) {
@@ -11,13 +13,13 @@ export class Row extends Component {
 
   onRowEditClicked = () => {
     if (this.props.editCurrentRow) {
-      let row = this.rowRef.current; //reference to row
-      let cellWithID = row.childNodes[9]; //will get the cell which has the id.
-      let idOfCell = cellWithID.innerText; //To get ID only.
+      // let row = this.rowRef.current; //reference to row
+      //let cellWithID = row.childNodes[9]; //will get the cell which has the id.
+      //let idOfCell = cellWithID.innerText; //To get ID only.
       // console.log(row, cellWithID, idOfCell);
 
       const params = {
-        id: idOfCell,
+        id: this.props.people.id,
       };
       this.props.editCurrentRow(params);
     }

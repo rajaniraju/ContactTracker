@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./Home.css";
 import { Row } from "./row.js";
+//import {withRouter}
+
 export class Home extends Component {
   static displayName = Home.name;
 
@@ -33,23 +35,7 @@ export class Home extends Component {
 
   onEditUserEntry = (params) => {
     let idToEdit = params.id;
-    for (let i = 0; i < this.state.peopleArray.length; i++) {
-      const person = this.state.peopleArray[i];
-      if (person.id == idToEdit) {
-        console.log(person);
-        this.setState({
-          firstName: person.firstName,
-          lastName: person.lastName,
-          address: person.address,
-          address2: person.address2,
-          city: person.city,
-          state: person.state,
-          zip: person.zip,
-          phone: person.phone,
-          id: idToEdit,
-        });
-      }
-    }
+    console.log(idToEdit);
   };
 
   getPersonList = () => {
@@ -114,8 +100,6 @@ export class Home extends Component {
         this.setState({ peopleArray: result });
       });
   };*/
-
- 
 
   render() {
     let rows = this.state.peopleArray.map((people, index) => {
