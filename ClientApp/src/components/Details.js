@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Form, Col } from "react-bootstrap";
 import "./Home.css";
 import { stateArray } from "./state";
+import { FaTrashAlt,FaSave } from "react-icons/fa";
 
 export class Details extends Component {
     static displayName = Details.name;
@@ -248,11 +249,11 @@ export class Details extends Component {
                         </Form.Row>
 
                         <Button onClick={this.addUserEntry} variant="outline-primary" type="submit">
-                            Save
+                            <FaSave/>
                         </Button>
 
                         <Button onClick={this.deleteUserEntry} variant="outline-primary" type="submit">
-                            Delete
+                        <FaTrashAlt />
                         </Button>
                     </Form>
                 </div>
