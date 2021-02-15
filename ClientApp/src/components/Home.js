@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./Home.css";
 import { Row } from "./row.js";
-import { withRouter } from "react-router-dom";
 
 export class Home extends Component {
     static displayName = Home.name;
@@ -33,14 +32,9 @@ export class Home extends Component {
         //Can also put this statement in constructor.
     }
 
-    nextPath(path) {
-        this.props.history.push(path);
-    }
-
     onEditUserEntry = (params) => {
-        let idToEdit = params.id;
-        console.log(idToEdit);
-        this.nextPath("/details");
+        var pushState = params;
+        this.props.history.push("/details", pushState);
     };
 
     getPersonList = () => {
@@ -50,7 +44,6 @@ export class Home extends Component {
                 return text.length ? JSON.parse(text) : null;
             })
             .then((personList) => {
-                console.log("#100", personList);
                 if (personList) {
                     this.setState({ peopleArray: personList });
                 }

@@ -5,24 +5,45 @@ import { stateArray } from "./state";
 
 export class Details extends Component {
     static displayName = Details.name;
-    portNumber = "44300";
+    portNumber = "5001";
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            firstName: "",
+            lastName: "",
+            address: "",
+            address2: "",
+            city: "",
+            state: "",
+            zip: "",
+            phone: "",
+            id: "",
+            peopleArray: [],
+            displayList: [],
+        };
     }
-    state = {
-        firstName: "",
-        lastName: "",
-        address: "",
-        address2: "",
-        city: "",
-        state: "",
-        zip: "",
-        phone: "",
-        id: "",
-        peopleArray: [],
-        displayList: [],
-    };
+
+    componentDidMount() {
+        var state = this.props.location.state;
+        if (state && state.person) {
+            var person = this.props.location.state.person;
+            console.log(person);
+            this.setState({
+                firstName: person.firstName,
+                lastName: person.lastName,
+                address: "",
+                address2: "",
+                city: "",
+                state: "",
+                zip: "",
+                phone: "",
+                id: "",
+            });
+        }
+    }
+
     handleTextOnChange = (e) => {
         console.log(e.target.name, e.target.value);
         const userName = e.target.name;
@@ -40,6 +61,7 @@ export class Details extends Component {
             );
         });
     };
+
     addUserEntry = (e) => {
         e.preventDefault();
         const person = {

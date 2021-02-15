@@ -12,7 +12,7 @@ namespace TestApp2
         SqlConnection _cnn;
         public DatabaseHelper()
         {
-            string connetionString = @"Server=ADMIN-LT;Database=AddressTracker;Integrated Security=true";
+            string connetionString = @"Server=localhost\sql2019;Database=AddressTracker;Integrated Security=true";
             _cnn = new SqlConnection(connetionString);
         }
 
