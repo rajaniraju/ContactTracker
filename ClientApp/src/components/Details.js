@@ -66,14 +66,15 @@ export class Details extends Component {
     addUserEntry = (e) => {
         e.preventDefault();
         const person = {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            address: this.state.address,
-            address2: this.state.address2,
-            city: this.state.city,
-            state: this.state.state,
-            zip: this.state.zip,
-            phone: this.state.phone,
+            id: this.state.id,
+            firstName: this.state.firstName.trim(),
+            lastName: this.state.lastName.trim(),
+            address: this.state.address.trim(),
+            address2: this.state.address2.trim(),
+            city: this.state.city.trim(),
+            state: this.state.state.trim(),
+            zip: this.state.zip.trim(),
+            phone: this.state.phone.trim(),
         };
         console.log(person);
         if (
@@ -84,7 +85,7 @@ export class Details extends Component {
         ) {
             return;
         } else {
-            fetch(`https://localhost:${this.portNumber}/WeatherForecast/AddPerson`, {
+            fetch(`https://localhost:${this.portNumber}/WeatherForecast/SavePerson`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

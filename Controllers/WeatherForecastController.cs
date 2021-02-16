@@ -15,8 +15,7 @@ namespace TestApp2.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
 
-    {
-        
+    {      
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IMemoryCache _memoryCache;
@@ -73,8 +72,8 @@ namespace TestApp2.Controllers
         }
 
         [HttpPost]
-        [Route("AddPerson")]
-        public object AddPerson([FromBody] Person person)
+        [Route("SavePerson")]
+        public object SavePerson([FromBody] Person person)
         {
             if (person == null)
             {
@@ -82,7 +81,7 @@ namespace TestApp2.Controllers
             }
 
             DatabaseHelper db = new DatabaseHelper();
-            db.AddPerson(person);
+            db.SavePerson(person);
             return null;
 
             /*
@@ -113,7 +112,7 @@ namespace TestApp2.Controllers
             return list;
             */
         }
-        [HttpPost]
+        /*[HttpPost]
         [Route("SavePerson")]
         public object SavePerson([FromBody] Person person)
         {
@@ -148,7 +147,7 @@ namespace TestApp2.Controllers
             _memoryCache.Set(CACHE_KEY, list);
 
             return list;
-        }
+        }*/
         [HttpPost]
         [Route("DeleteEntry")]
         public object DeleteEntry([FromBody] string id)

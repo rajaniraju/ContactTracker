@@ -12,7 +12,7 @@ namespace TestApp2
         SqlConnection _cnn;
         public DatabaseHelper()
         {
-            string connetionString = @"Server=localhost\sql2019;Database=AddressTracker;Integrated Security=true";
+            string connetionString = @"Server=localhost;Database=AddressTracker;Integrated Security=true";
             _cnn = new SqlConnection(connetionString);
         }
 
@@ -46,14 +46,23 @@ namespace TestApp2
 
             return personList;
         }
-        public void AddPerson(Person person)
+        public void SavePerson(Person person)
         {
+            string sql;
             _cnn.Open();
-            var newGuid = Guid.NewGuid();
-            string insertSql = "INSERT INTO PersonalInformation(FirstName, LastName, Address, Address2, State, City, Zip, Phone, Guid)";
-            insertSql += $" VALUES('{person.FirstName}', '{person.LastName}', '{person.Address}', '{person.Address2}', '{person.State}', '{person.City}', '{person.Zip}', '{person.Phone}', '{newGuid}');";
-
-            SqlCommand cmd = new SqlCommand(insertSql, _cnn);
+            if (string.IsNullOrEmpty(person.Id))
+            {
+                var newGuid = Guid.NewGuid();
+                sql = "INSERT INTO PersonalInformation(FirstName, LastName, Address, Address2, State, City, Zip, Phone, Guid)";
+                sql += $" VALUES('{person.FirstName}', '{person.LastName}', '{person.Address}', '{person.Address2}', '{person.State}', '{person.City}', '{person.Zip}', '{person.Phone}', '{newGuid}');";
+            }
+            else
+            {
+                sql = "UPDATE PersonalInformation";
+                sql += $" SET FirstName= '{ person.FirstName }', LastName = '{person.LastName}', Address='{person.Address}', Address2='{person.Address2}', State='{person.State}', City='{person.City}', Zip='{person.Zip}', Phone='{person.Phone}'";
+                sql += $" WHERE GUID='{person.Id}'";
+            }
+            SqlCommand cmd = new SqlCommand(sql, _cnn);
             cmd.ExecuteNonQuery();
             _cnn.Close();
         }
