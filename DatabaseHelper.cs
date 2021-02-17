@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -16,7 +15,7 @@ namespace TestApp2
             _cnn = new SqlConnection(connetionString);
         }
 
-        public List<Person> GetPersonList() 
+        public List<Person> GetPersonList()
         {
             _cnn.Open();
             string strSQL = "SELECT * FROM PersonalInformation";
@@ -26,7 +25,7 @@ namespace TestApp2
             adapter.Fill(table);
             List<Person> personList = new List<Person>();
 
-            foreach (DataRow row in table.Rows) 
+            foreach (DataRow row in table.Rows)
             {
                 Person person = new Person();
                 person.FirstName = row["FirstName"].ToString();
@@ -38,9 +37,9 @@ namespace TestApp2
                 person.Zip = row["Zip"].ToString();
                 person.State = row["State"].ToString();
                 person.Id = row["GUID"].ToString();
-                
+
                 personList.Add(person);
-            }       
+            }
 
             _cnn.Close();
 
@@ -68,11 +67,26 @@ namespace TestApp2
         }
         public List<Person> DeletePerson(string id)
         {
-           _cnn.Open();
+            _cnn.Open();
+
             string deleteSqlRow = "DELETE FROM PersonalInformation WHERE Guid='" + id + "'";
-            SqlCommand cmd = new SqlCommand(deleteSqlRow, _cnn);           
+            SqlCommand cmd = new SqlCommand(deleteSqlRow, _cnn);
             cmd.ExecuteNonQuery();
-           _cnn.Close();
+            _cnn.Close();
+
+            List<Person> list = GetPersonList();
+            return list;
+        }
+        public List<Person> DeleteSelectedPerson(string[] idsToDelete)
+        {
+            if (idsToDelete == null || idsToDelete.Length <= 0) throw new Exception("Empty list");
+
+            string idCsvWithQuotes = string.Format("'{0}'", string.Join("','", idsToDelete));
+            string deleteSqlRow = "DELETE FROM PersonalInformation WHERE Guid in (" + idCsvWithQuotes + ")";
+            _cnn.Open();
+            SqlCommand cmd = new SqlCommand(deleteSqlRow, _cnn);
+            cmd.ExecuteNonQuery();
+            _cnn.Close();
 
             List<Person> list = GetPersonList();
             return list;

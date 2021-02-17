@@ -164,6 +164,23 @@ namespace TestApp2.Controllers
             return personList;
             
         }
+        [HttpPost]
+        [Route("DeleteSelectedEntry")]
+        public object DeleteSelectedEntry([FromBody] string[]idsToDelete)
+        {
+
+            // List<Person> list = _memoryCache.Get<List<Person>>(CACHE_KEY);
+            //var count = list.RemoveAll(p => arr.ToList().Contains(p.Id));
+
+            // _memoryCache.Set(CACHE_KEY, list);
+
+
+            DatabaseHelper db = new DatabaseHelper();
+           
+             var personList = db.DeleteSelectedPerson(idsToDelete);
+            return personList;
+
+        }
 
     }
 

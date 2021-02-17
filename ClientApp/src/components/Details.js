@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Button, Form, Col } from "react-bootstrap";
 import "./Home.css";
 import { stateArray } from "./state";
-import { FaTrashAlt,FaSave } from "react-icons/fa";
+import {  FaSave } from "react-icons/fa";
+import { GrClear} from "react-icons/gr";
 
 export class Details extends Component {
     static displayName = Details.name;
@@ -62,8 +63,22 @@ export class Details extends Component {
             );
         });
     };
+    clearEntry = (e) => {
+        e.preventDefault()
+        this.setState({
+            firstName: "",
+            lastName: "",
+            address: "",
+            address2: "",
+            city: "",
+            state: "",
+            zip: "",
+            phone: "",
+            id: "",
+      })  
+    }
 
-    addUserEntry = (e) => {
+    saveUserEntry = (e) => {
         e.preventDefault();
         const person = {
             id: this.state.id,
@@ -93,57 +108,12 @@ export class Details extends Component {
                 body: JSON.stringify(person),
             }).then((res) => {
                 console.log(res);
-                //todo
-                // go to home
+                
             });
-            //     .then((result) => {
-            //       console.log(result);
-            //       this.setState({ peopleArray: result });
-            //       console.log(this.state.peopleArray);
-            //     });
+            
         }
     };
-    /*onSaveUserEntry = (e) => {
-    e.preventDefault();
-    const person = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      address: this.state.address,
-      address2: this.state.address2,
-      city: this.state.city,
-      state: this.state.state,
-      zip: this.state.zip,
-      id: this.state.id,
-    };
-    //to do check entry point;
-    if (person == null) {
-      return;
-    } else {
-      fetch(`https://localhost:${this.portNumber}/WeatherForecast/SavePerson`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(person),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          console.log(result);
-          this.setState({ peopleArray: result });
-        });
-      this.setState({
-        firstName: "",
-        lastName: "",
-        address: "",
-        address2: "",
-        city: "",
-        state: "",
-        zip: "",
-        phone: "",
-      });
-    }
-  };*/
-
+    
     getPersonList = (e) => {
         e.preventDefault();
         fetch(`https://localhost:${this.portNumber}/WeatherForecast/GetPersonList/`)
@@ -249,12 +219,12 @@ export class Details extends Component {
                             </Form.Group>
                         </Form.Row>
 
-                        <Button onClick={this.addUserEntry} variant="outline-primary" type="submit">
+                        <Button onClick={this.saveUserEntry} variant="outline-primary" type="submit">
                             <FaSave/>
                         </Button>
 
-                        <Button onClick={this.deleteUserEntry} variant="outline-primary" type="submit">
-                        <FaTrashAlt />
+                        <Button onClick={this.clearEntry} variant="outline-primary" type="submit">
+                        <GrClear/>
                         </Button>
                     </Form>
                 </div>
