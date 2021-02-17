@@ -135,6 +135,8 @@ export class Home extends Component {
                     <th>Zip</th>
                     <th>Phone</th>
                     <th>id</th>
+                    <th>Called</th>
+                    <th>Mailed</th>
                   </tr>
                   {rows}
                 </tbody>

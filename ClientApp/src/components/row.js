@@ -53,6 +53,12 @@ export class Row extends Component {
                 <td>{this.props.people.phone}</td>
                 <td /*hidden={true}*/>{this.props.people.id}</td>
                 <td>
+                    <input type="checkbox" className="checkbox"></input>
+                </td>
+                <td>
+                    <input type="checkbox" className="checkbox"></input>
+                </td>
+                <td>
                     <Button onClick={this.onRowEditClicked}>
                         <FaUserEdit />
                     </Button>
