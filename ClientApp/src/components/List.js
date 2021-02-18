@@ -23,6 +23,7 @@ export class List extends Component {
         zip: "",
         phone: "",
         id: "",
+        
         peopleArray: [],
         displayList: [],
     };
@@ -70,7 +71,13 @@ export class List extends Component {
                 console.log(result);
                 this.setState({ peopleArray: result });
             });
-    };
+  };
+  
+  calledCheckedSelected = (isCheckboxChecked) => {
+    console.log("from row:", isCheckboxChecked); 
+    
+      
+    }
 
     deleteSelectedEntry = (e) => {
         e.preventDefault();
@@ -117,6 +124,8 @@ export class List extends Component {
                     people={people}
                     deleteCurrentRow={this.onRowDeleted}
                     editCurrentRow={this.onEditUserEntry}
+                    calledChecked={this.calledCheckedSelected}
+                    mailedChecked={this.state.mailedChecked}
                 >
                     {" "}
                 </Row>
