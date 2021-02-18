@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Home.css";
+import "./List.css";
 import { Button } from "react-bootstrap";
 import { FaTrashAlt, FaUserEdit } from "react-icons/fa";
 

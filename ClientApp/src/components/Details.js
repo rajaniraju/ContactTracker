@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form, Col } from "react-bootstrap";
-import "./Home.css";
+import "./List.css";
 import { stateArray } from "./state";
 import {  FaSave } from "react-icons/fa";
 import { GrClear} from "react-icons/gr";
