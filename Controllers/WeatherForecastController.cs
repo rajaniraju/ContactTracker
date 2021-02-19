@@ -4,10 +4,10 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TestApp2.Common;
+using ContactTracker.Common;
 using System.Data;
 
-namespace TestApp2.Controllers
+namespace ContactTracker.Controllers
 {
     [ApiController]
     [Route("[controller]")]

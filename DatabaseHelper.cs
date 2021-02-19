@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using TestApp2.Common;
+using ContactTracker.Common;
 
-namespace TestApp2
+namespace ContactTracker
 {
     public class DatabaseHelper
     {

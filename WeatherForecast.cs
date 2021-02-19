@@ -1,6 +1,6 @@
 using System;
 
-namespace TestApp2
+namespace ContactTracker
 {
     public class WeatherForecast
     {

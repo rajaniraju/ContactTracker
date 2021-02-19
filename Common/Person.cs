@@ -1,4 +1,4 @@
-﻿namespace TestApp2.Common
+﻿namespace ContactTracker.Common
 {
     public class Person
     {
