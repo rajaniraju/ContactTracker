@@ -15,7 +15,7 @@ export class Row extends Component {
 	handleChangeOnCalled = (e) => {
         console.log(e.target.checked);
         if (this.props.calledChecked) {
-            this.props.calledChecked(e.target.checked)
+            this.props.calledChecked(this.props.people.id, e.target.checked)
          }
         /*if (e.target.checked) {
             this.setState({

@@ -163,6 +163,22 @@ namespace ContactTracker.Controllers
             
         }
         [HttpPost]
+        [Route("CalledChecked")]
+        public void CalledChecked([FromBody]MarkCalledRequest called )
+        {
+
+            // List<Person> list = _memoryCache.Get<List<Person>>(CACHE_KEY);
+            //var count = list.RemoveAll(p => arr.ToList().Contains(p.Id));
+
+            // _memoryCache.Set(CACHE_KEY, list);
+
+
+            DatabaseHelper db = new DatabaseHelper();
+
+            db.Calledchecked(called);
+            return;
+        }
+        [HttpPost]
         [Route("DeleteSelectedEntry")]
         public object DeleteSelectedEntry([FromBody] string[]idsToDelete)
         {
