@@ -68,13 +68,13 @@ namespace ContactTracker
         public void Calledchecked(MarkCalledRequest callchecked)
         {
             string insertCalled;
-            if (callchecked.Is_Called)
+            if (callchecked.IsCalled)
             { 
-                insertCalled = "INSERT INTO PersonalInformation (is_Called) VALUES (1) WHERE Guid='" + callchecked.Id + "'"; 
+                insertCalled = "UPDATE PersonalInformation  set is_Called = 1 WHERE Guid='" + callchecked.Id + "'"; 
             }
             else
             { 
-                insertCalled = "INSERT INTO PersonalInformation (is_Called) VALUES (0)WHERE Guid='" + callchecked.Id + "'"; 
+                insertCalled = "UPDATE PersonalInformation  set is_Called = 0 WHERE Guid='" + callchecked.Id + "'"; 
             }
             _cnn.Open();
 

@@ -73,13 +73,13 @@ export class List extends Component {
 			});
 	};
 
-	calledCheckedSelected = (id, isCheckboxChecked) => {
-		console.log("from row:", id,isCheckboxChecked);
-    const checkObject = {
-      id: id,
-      isCalled:isCheckboxChecked,
-    }
-    fetch(
+	calledCheckedSelected = (id, isCheckboxChecked) => {		
+		const checkObject = {
+			id: id,
+			isCalled: isCheckboxChecked,
+    };
+    console.log("from row:", checkObject);
+		fetch(
 			`https://localhost:${this.portNumber}/WeatherForecast/CalledChecked`,
 			{
 				method: "POST",
@@ -88,12 +88,7 @@ export class List extends Component {
 				},
 				body: JSON.stringify(checkObject),
 			}
-		)
-			.then((res) => res.json())
-			.then((result) => {
-				console.log(result);
-				
-			});
+		).then((res) => res.json());
 	};
 
 	deleteSelectedEntry = (e) => {

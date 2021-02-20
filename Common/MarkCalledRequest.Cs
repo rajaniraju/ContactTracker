@@ -9,6 +9,6 @@ namespace ContactTracker.Common
     {
         public string Id { get; set; }
 
-        public bool Is_Called { get; set; }
+        public bool IsCalled { get; set; }
     }
 }
