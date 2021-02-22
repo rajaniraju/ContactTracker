@@ -11,16 +11,16 @@ namespace ContactTracker.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class ContactTrackerController : ControllerBase
 
     {      
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<ContactTrackerController> _logger;
         private readonly IMemoryCache _memoryCache;
         private const string CACHE_KEY = "My_Key";
 
-        public WeatherForecastController(
-            ILogger<WeatherForecastController> logger, 
+        public ContactTrackerController(
+            ILogger<ContactTrackerController> logger, 
             IMemoryCache memoryCache)
         {
             _logger = logger;

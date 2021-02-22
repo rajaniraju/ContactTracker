@@ -100,7 +100,7 @@ export class Details extends Component {
         ) {
             return;
         } else {
-            fetch(`https://localhost:${this.portNumber}/WeatherForecast/SavePerson`, {
+            fetch(`https://localhost:${this.portNumber}/ContactTracker/SavePerson`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -116,7 +116,7 @@ export class Details extends Component {
     
     getPersonList = (e) => {
         e.preventDefault();
-        fetch(`https://localhost:${this.portNumber}/WeatherForecast/GetPersonList/`)
+        fetch(`https://localhost:${this.portNumber}/ContactTracker/GetPersonList/`)
             .then((res) => res.text())
             .then((text) => {
                 return text.length ? JSON.parse(text) : null;

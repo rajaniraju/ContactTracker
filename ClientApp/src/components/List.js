@@ -41,7 +41,7 @@ export class List extends Component {
 
 	getPersonList = () => {
 		fetch(
-			`https://localhost:${this.portNumber}/WeatherForecast/GetPersonList/`
+			`https://localhost:${this.portNumber}/ContactTracker/GetPersonList/`
 		)
 			.then((res) => res.text())
 			.then((text) => {
@@ -57,7 +57,7 @@ export class List extends Component {
 		console.log("from row:", params);
 
 		fetch(
-			`https://localhost:${this.portNumber}/WeatherForecast/DeleteEntry`,
+			`https://localhost:${this.portNumber}/ContactTracker/DeleteEntry`,
 			{
 				method: "POST",
 				headers: {
@@ -80,7 +80,7 @@ export class List extends Component {
     };
     console.log("from row:", checkObject);
 		fetch(
-			`https://localhost:${this.portNumber}/WeatherForecast/CallChecked`,
+			`https://localhost:${this.portNumber}/ContactTracker/CallChecked`,
 			{
 				method: "POST",
 				headers: {
@@ -97,7 +97,7 @@ export class List extends Component {
     };
     console.log("from row:", checkObject);
 		fetch(
-			`https://localhost:${this.portNumber}/WeatherForecast/MailChecked`,
+			`https://localhost:${this.portNumber}/ContactTracker/MailChecked`,
 			{
 				method: "POST",
 				headers: {
@@ -128,7 +128,7 @@ export class List extends Component {
 		console.log(selectedIds);
 
 		fetch(
-			`https://localhost:${this.portNumber}/WeatherForecast/DeleteSelectedEntry`,
+			`https://localhost:${this.portNumber}/ContactTracker/DeleteSelectedEntry`,
 			{
 				method: "POST",
 				headers: {
