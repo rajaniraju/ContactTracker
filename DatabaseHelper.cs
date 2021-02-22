@@ -37,6 +37,8 @@ namespace ContactTracker
                 person.Zip = row["Zip"].ToString();
                 person.State = row["State"].ToString();
                 person.Id = row["GUID"].ToString();
+                person.IsCalled = row["IsCalled"] != DBNull.Value ? Convert.ToBoolean(row["IsCalled"]) : false;
+                person.IsMailed = row["IsMailed"] != DBNull.Value ? Convert.ToBoolean(row["IsMailed"]) : false;
 
                 personList.Add(person);
             }
@@ -65,28 +67,23 @@ namespace ContactTracker
             cmd.ExecuteNonQuery();
             _cnn.Close();
         }
-        public void Calledchecked(MarkCalledRequest callchecked)
+        public void CalledChecked(MarkCalledRequest callchecked)
         {
             string insertCalled;
             if (callchecked.IsCalled)
             { 
-                insertCalled = "UPDATE PersonalInformation  set is_Called = 1 WHERE Guid='" + callchecked.Id + "'"; 
+                insertCalled = "UPDATE PersonalInformation  set IsCalled = 1 WHERE Guid='" + callchecked.Id + "'"; 
             }
             else
             { 
-                insertCalled = "UPDATE PersonalInformation  set is_Called = 0 WHERE Guid='" + callchecked.Id + "'"; 
+                insertCalled = "UPDATE PersonalInformation  set IsCalled = 0 WHERE Guid='" + callchecked.Id + "'"; 
             }
             _cnn.Open();
 
             SqlCommand cmd = new SqlCommand(insertCalled, _cnn);
             cmd.ExecuteNonQuery();
             _cnn.Close();
-
-
         }
-
-
-
 
         public List<Person> DeletePerson(string id)
         {

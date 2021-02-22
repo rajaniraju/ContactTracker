@@ -11,6 +11,8 @@
         public string Phone  {get;set;}
         public string City { get; set; }
         public string Id { get; set; }
+        public bool IsCalled { get; set; }
+        public bool IsMailed { get; set; }
         public string FullName
         {
             get

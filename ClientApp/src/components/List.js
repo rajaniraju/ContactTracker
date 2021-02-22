@@ -88,7 +88,7 @@ export class List extends Component {
 				},
 				body: JSON.stringify(checkObject),
 			}
-		).then((res) => res.json());
+		);//.then((res) => res.json());
 	};
 
 	deleteSelectedEntry = (e) => {

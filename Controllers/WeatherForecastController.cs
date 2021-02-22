@@ -19,9 +19,9 @@ namespace ContactTracker.Controllers
         private readonly IMemoryCache _memoryCache;
         private const string CACHE_KEY = "My_Key";
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IMemoryCache memoryCache)
-
-
+        public WeatherForecastController(
+            ILogger<WeatherForecastController> logger, 
+            IMemoryCache memoryCache)
         {
             _logger = logger;
             _memoryCache = memoryCache;
@@ -175,7 +175,7 @@ namespace ContactTracker.Controllers
 
             DatabaseHelper db = new DatabaseHelper();
 
-            db.Calledchecked(called);
+            db.CalledChecked(called);
             return;
         }
         [HttpPost]

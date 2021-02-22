@@ -75,11 +75,15 @@ export class Row extends Component {
 						type="checkbox"
 						className="checkbox"
 						onChange={this.handleChangeOnCalled}
-						defaultChecked={this.state.isCalledChecked}
+						defaultChecked={this.props.people.isCalled}
 					></input>
 				</td>
 				<td>
-					<input type="checkbox" className="checkbox"></input>
+					<input
+						type="checkbox"
+						className="checkbox"
+						defaultChecked={this.props.people.isMailed}>						
+						</input>
 				</td>
 				<td>
 					<Button onClick={this.onRowEditClicked}>
