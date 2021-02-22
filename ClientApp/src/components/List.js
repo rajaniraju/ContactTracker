@@ -80,7 +80,7 @@ export class List extends Component {
     };
     console.log("from row:", checkObject);
 		fetch(
-			`https://localhost:${this.portNumber}/WeatherForecast/CalledChecked`,
+			`https://localhost:${this.portNumber}/WeatherForecast/CallChecked`,
 			{
 				method: "POST",
 				headers: {
@@ -88,7 +88,24 @@ export class List extends Component {
 				},
 				body: JSON.stringify(checkObject),
 			}
-		);//.then((res) => res.json());
+		);
+	};
+	mailedCheckedSelected = (id, isCheckboxChecked) => {		
+		const checkObject = {
+			id: id,
+			isMailed: isCheckboxChecked,
+    };
+    console.log("from row:", checkObject);
+		fetch(
+			`https://localhost:${this.portNumber}/WeatherForecast/MailChecked`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(checkObject),
+			}
+		);
 	};
 
 	deleteSelectedEntry = (e) => {
@@ -137,7 +154,7 @@ export class List extends Component {
 					deleteCurrentRow={this.onRowDeleted}
 					editCurrentRow={this.onEditUserEntry}
 					calledChecked={this.calledCheckedSelected}
-					mailedChecked={this.state.mailedChecked}
+					mailedChecked={this.mailedCheckedSelected}
 				>
 					{" "}
 				</Row>

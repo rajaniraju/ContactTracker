@@ -163,7 +163,7 @@ namespace ContactTracker.Controllers
             
         }
         [HttpPost]
-        [Route("CalledChecked")]
+        [Route("CallChecked")]
         public void CalledChecked([FromBody]MarkCalledRequest called )
         {
 
@@ -175,7 +175,23 @@ namespace ContactTracker.Controllers
 
             DatabaseHelper db = new DatabaseHelper();
 
-            db.CalledChecked(called);
+            db.CallChecked(called);
+            return;
+        }
+        [HttpPost]
+        [Route("MailChecked")]
+        public void MailChecked([FromBody] MarkMailRequest mailed)
+        {
+
+            // List<Person> list = _memoryCache.Get<List<Person>>(CACHE_KEY);
+            //var count = list.RemoveAll(p => arr.ToList().Contains(p.Id));
+
+            // _memoryCache.Set(CACHE_KEY, list);
+
+
+            DatabaseHelper db = new DatabaseHelper();
+
+            db.MailChecked(mailed);
             return;
         }
         [HttpPost]

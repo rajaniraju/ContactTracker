@@ -67,20 +67,37 @@ namespace ContactTracker
             cmd.ExecuteNonQuery();
             _cnn.Close();
         }
-        public void CalledChecked(MarkCalledRequest callchecked)
+        public void CallChecked(MarkCalledRequest callchecked)
         {
             string insertCalled;
             if (callchecked.IsCalled)
-            { 
-                insertCalled = "UPDATE PersonalInformation  set IsCalled = 1 WHERE Guid='" + callchecked.Id + "'"; 
+            {
+                insertCalled = "UPDATE PersonalInformation  set IsCalled = 1 WHERE Guid='" + callchecked.Id + "'";
             }
             else
-            { 
-                insertCalled = "UPDATE PersonalInformation  set IsCalled = 0 WHERE Guid='" + callchecked.Id + "'"; 
+            {
+                insertCalled = "UPDATE PersonalInformation  set IsCalled = 0 WHERE Guid='" + callchecked.Id + "'";
             }
             _cnn.Open();
 
             SqlCommand cmd = new SqlCommand(insertCalled, _cnn);
+            cmd.ExecuteNonQuery();
+            _cnn.Close();
+        }
+        public void MailChecked(MarkMailRequest mailchecked)
+        {
+            string insertMailed;
+            if (mailchecked.IsMailed)
+            { 
+                insertMailed = "UPDATE PersonalInformation  set IsMailed = 1 WHERE Guid='" + mailchecked.Id + "'"; 
+            }
+            else
+            { 
+                insertMailed = "UPDATE PersonalInformation  set IsMailed = 0 WHERE Guid='" + mailchecked.Id + "'"; 
+            }
+            _cnn.Open();
+
+            SqlCommand cmd = new SqlCommand(insertMailed, _cnn);
             cmd.ExecuteNonQuery();
             _cnn.Close();
         }

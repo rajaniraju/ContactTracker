@@ -17,15 +17,12 @@ export class Row extends Component {
         if (this.props.calledChecked) {
             this.props.calledChecked(this.props.people.id, e.target.checked)
          }
-        /*if (e.target.checked) {
-            this.setState({
-                isCalledChecked: true,
-            })
-            const isCheckboxChecked = {
-                isCalledChecked:true,
-            }
-            this.props.calledChecked(isCheckboxChecked)
-        }*/
+	};
+	handleChangeOnMailed = (e) => {
+        console.log(e.target.checked);
+        if (this.props.mailedChecked) {
+            this.props.mailedChecked(this.props.people.id, e.target.checked)
+         }
 	};
 
 	onRowEditClicked = () => {
@@ -82,6 +79,7 @@ export class Row extends Component {
 					<input
 						type="checkbox"
 						className="checkbox"
+						onChange={this.handleChangeOnMailed}
 						defaultChecked={this.props.people.isMailed}>						
 						</input>
 				</td>
