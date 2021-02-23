@@ -4,6 +4,7 @@ import { Route } from "react-router";
 import { Layout } from "./components/Layout";
 import { List } from "./components/List";
 import { Details } from "./components/Details";
+import { Home } from "./components/Home";
 
 import "./custom.css";
 
@@ -13,7 +14,8 @@ export default class App extends Component {
   render() {
     return (
       <Layout>
-        <Route exact path="/" component={List} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/List" component={List} />
         <Route path="/Details" component={Details} />
       </Layout>
     );
