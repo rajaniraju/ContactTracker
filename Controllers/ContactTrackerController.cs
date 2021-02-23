@@ -27,18 +27,7 @@ namespace ContactTracker.Controllers
             _memoryCache = memoryCache;
         }
 
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
-        {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-               
-            })
-            .ToArray();
-        }
+        
 
         //[HttpGet]
         //[Route("GetUserEntry/{firstName}/{lastName}/{age}")]
