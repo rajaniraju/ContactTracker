@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import "./Login.css"
-import { Button, Col, Form,Alert } from "react-bootstrap";
+import { Button, Col, Form, Alert } from "react-bootstrap";
+import {NavMenu} from "./NavMenu.js"
 export class Login extends Component {
 	static displayName = Login.name;
 	portNumber = "44300";
 
 	render() {
-		return (
+        return (
+            <div>
+                <header>
+                    <NavMenu/>
+                </header>
 			<div className="Login">
 				<Form className="Login form">
 					<Form.Row>
@@ -31,7 +36,8 @@ export class Login extends Component {
                         <Alert.Link href={"#"}>New User</Alert.Link>
 					</Form.Row>
 				</Form>
-			</div>
+                </div>
+                </div>
 		);
 	}
 }
