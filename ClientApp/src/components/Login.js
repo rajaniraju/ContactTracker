@@ -19,6 +19,23 @@ export class Login extends Component {
 			console.log(this.state.userName, this.state.password);
 		});
 	};
+	addUserEntry = (e) => {
+		e.preventdefault();
+		const person = {
+			userName: this.state.userName,
+			password: this.state.password,
+		};
+
+		fetch(`https://localhost:${this.portNumber}/ContactTracker/AddLogin`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(person),
+		}).then((res) => {
+			console.log(res);
+		});
+	};
 
 	render() {
 		return (
@@ -51,7 +68,7 @@ export class Login extends Component {
 							</Form.Group>
 						</Form.Row>
 						<Form.Row>
-							<Button block size="lg" type="submit">
+							<Button block size="lg" type="submit" onClick={this.addUserEntry}>
 								Login
 							</Button>
 						</Form.Row>

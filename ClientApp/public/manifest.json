@@ -1,6 +1,6 @@
 {
-  "short_name": "TestApp2",
-  "name": "TestApp2",
+  "short_name": "ContactTracker",
+  "name": "ContactTracker",
   "icons": [
     {
       "src": "favicon.ico",
