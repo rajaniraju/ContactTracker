@@ -4,15 +4,12 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using ContactTracker.Common;
 
-
 namespace ContactTracker.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class ContactTrackerController : ControllerBase
-
     {      
-
         private readonly ILogger<ContactTrackerController> _logger;
         private readonly IMemoryCache _memoryCache;
         private const string CACHE_KEY = "My_Key";

@@ -19,14 +19,14 @@ export class Login extends Component {
 			console.log(this.state.userName, this.state.password);
 		});
 	};
-	addUserEntry = (e) => {
-		e.preventdefault();
+
+	onLoginClicked = (e) => {
 		const person = {
 			userName: this.state.userName,
 			password: this.state.password,
 		};
-
-		fetch(`https://localhost:${this.portNumber}/ContactTracker/AddLogin`, {
+		console.log(person);
+		fetch(`https://localhost:${this.portNumber}/Authentication/Login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -68,7 +68,7 @@ export class Login extends Component {
 							</Form.Group>
 						</Form.Row>
 						<Form.Row>
-							<Button block size="lg" type="submit" onClick={this.addUserEntry}>
+							<Button block size="lg" type="button" onClick={this.onLoginClicked}>
 								Login
 							</Button>
 						</Form.Row>
