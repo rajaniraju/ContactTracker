@@ -14,7 +14,7 @@ namespace ContactTracker.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public object Login([FromBody] Login person)
+        public IActionResult Login([FromBody] Login person)
         {
             if (person == null)
             {
@@ -22,8 +22,9 @@ namespace ContactTracker.Controllers
             }
 
             DatabaseLoginHelper db = new DatabaseLoginHelper();
-            db.AddLogin(person);
-            return null;
+            bool authenticated = db.AuthenticateUser(person);
+
+            return Ok(authenticated);
         }
     }
 }
