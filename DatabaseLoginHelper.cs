@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
+using System.Linq;
 
 namespace ContactTracker
 {
@@ -28,9 +29,9 @@ namespace ContactTracker
             foreach (DataRow row in table.Rows)
             {
                 Login login = new Login();
-                login.userName = row["userName"].ToString();
-                login.password = row["password"].ToString();
-                login.id = row["id"].ToString();
+                login.UserName = row["userName"].ToString();
+                login.Password = row["password"].ToString();
+                login.Id = row["id"].ToString();
                 loginList.Add(login);
             }
 
@@ -41,26 +42,24 @@ namespace ContactTracker
 
         public bool AuthenticateUser(Login login)
         {
-            //string sql;
-            //_cnn.Open();
-            //if (string.IsNullOrEmpty(login.id))
-            //{
-            //    var newGuid = Guid.NewGuid();
-            //    sql = "INSERT INTO LoginInformation(userName,password)";
-            //    sql += $" VALUES('{login.userName}', '{login.password}', );";
-            //}
-            //else
-            //{
-            //    sql = "UPDATE LoginInformation";
-            //    sql += $" SET userName= '{ login.userName }', password = '{login.password}''";
-            //    sql += $" WHERE GUID='{login.id}'";
-            //}
-            //SqlCommand cmd = new SqlCommand(sql, _cnn);
-            //List<Login> list = GetLoginList();
-            //cmd.ExecuteNonQuery();
-            // _cnn.Close();
-            //return list;
-            return false;            
+            string strSQL = $"SELECT * FROM LoginInformation WHERE userName='{login.UserName}'";
+            _cnn.Open();
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(strSQL, _cnn);
+            adapter.Fill(table);
+            _cnn.Close();
+
+            var row = table.Rows[0];
+            Login loginPerson = new Login();
+            loginPerson.UserName = row["userName"].ToString();
+            loginPerson.Password = row["password"].ToString();                  
+            
+            if (loginPerson != null && loginPerson.Password.Trim() == login.Password)
+            {
+                return true;
+            }
+
+            return false;
         }
 
     }

@@ -32,9 +32,11 @@ export class Login extends Component {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(person),
-		}).then((res) => {
-			console.log(res);
-		});
+		})
+			.then((res) => res.json())
+			.then((result) => {
+				console.log(result);
+			});
 	};
 
 	render() {
@@ -68,7 +70,12 @@ export class Login extends Component {
 							</Form.Group>
 						</Form.Row>
 						<Form.Row>
-							<Button block size="lg" type="button" onClick={this.onLoginClicked}>
+							<Button
+								block
+								size="lg"
+								type="button"
+								onClick={this.onLoginClicked}
+							>
 								Login
 							</Button>
 						</Form.Row>

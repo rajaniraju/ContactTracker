@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ContactTracker.Common;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace ContactTracker.Controllers
@@ -16,15 +17,19 @@ namespace ContactTracker.Controllers
         [Route("Login")]
         public IActionResult Login([FromBody] Login person)
         {
+            var response = new ApiResponse();
             if (person == null)
             {
-                return null;
+                response.Status = "Failed";                
+                return BadRequest(response);
             }
 
             DatabaseLoginHelper db = new DatabaseLoginHelper();
             bool authenticated = db.AuthenticateUser(person);
+            response.Status = authenticated ? "Passed" : "Failed";
+            response.Result = authenticated;
 
-            return Ok(authenticated);
+            return Ok(response);
         }
     }
 }
