@@ -11,7 +11,7 @@ namespace ContactTracker
         SqlConnection _cnn;
         public DatabaseLoginHelper()
         {
-            string connetionString = @"Server=localhost;Database=AddressTracker;Integrated Security=true";
+            string connetionString = @"Server=LAPTOP-GDAIDKD8\SQL2019;Database=AddressTracker;Integrated Security=true";
             _cnn = new SqlConnection(connetionString);
         }
         public List<Login> GetLoginList()
