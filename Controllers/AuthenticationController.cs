@@ -11,23 +11,32 @@ namespace ContactTracker.Controllers
         private readonly ILogger<AuthenticationController> _logger;
         public AuthenticationController(
             ILogger<AuthenticationController> logger
-            ) => _logger = logger;
+            )
+        {
+            _logger = logger;
+        }
 
         [HttpPost]
         [Route("Login")]
         public IActionResult Login([FromBody] Login person)
         {
-            var response = new ApiResponse();
+            var response = new DatabaseLoginHelper();
             if (person == null)
             {
-                response.Status = "Failed";                
+                           
                 return BadRequest(response);
+                
             }
 
             DatabaseLoginHelper db = new DatabaseLoginHelper();
             bool authenticated = db.AuthenticateUser(person);
-            response.Status = authenticated ? "Passed" : "Failed";
-            response.Result = authenticated;
+
+            var res = new ApiResponse();
+            
+           res.Status = authenticated ? "Passed" : "Failed";
+            res.Result = authenticated;
+        
+            
 
             return Ok(response);
         }

@@ -40,6 +40,11 @@ namespace ContactTracker
             return loginList;
         }
 
+        internal object AuthenticateUser(bool v)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool AuthenticateUser(Login login)
         {
             string strSQL = $"SELECT * FROM LoginInformation WHERE userName='{login.UserName}'";
